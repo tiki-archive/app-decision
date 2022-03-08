@@ -28,6 +28,7 @@ class DecisionSdkService extends ChangeNotifier {
     presenter = DecisionSdkPresenter(this);
     model = DecisionSdkModel();
     controller = DecisionSdkController(this);
+    spam = DecisionSdkSpamService(this);
     model.isTestDone = isTestDone;
     model.isLinked = isConnected;
     _testDoneCallback = testDoneCallback ?? () => _log.finest('test done');

@@ -15,10 +15,9 @@ class DecisionSdkSpamService {
 
   DecisionSdkSpamService(this.decisionSdkService);
 
-  get account => null;
-
-  Future<void> addCards(
-      {required List<dynamic> messages,
+  Future<void> addCards({
+      required String provider,
+      required List<dynamic> messages,
       required unsubscribeCallback,
       required keepCallback}) async {
     List<DecisionSdkSpamModel> spamModels = [];
@@ -31,10 +30,11 @@ class DecisionSdkSpamService {
       securityScore: messages[0].sender?.company?.securityScore,
       sensitivityScore: messages[0].sender?.company?.sensitivityScore,
       hackingScore: messages[0].sender?.company?.breachScore,
-      senderId: messages[0].sender.id,
+      senderId: messages[0].sender.senderId,
       senderEmail: messages[0].sender?.email,
       totalEmails: messages.length,
       sinceYear: messages[0].sender?.emailSince?.year.toString(),
+      provider: provider,
     ));
     decisionSdkService.addCards(spamModels
         .map((spamModel) => DecisionSdkSpamLayout(this, spamModel))

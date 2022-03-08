@@ -5,13 +5,13 @@ import '../../decision_spam_service.dart';
 class DecisionSdkSpamViewHeader extends StatelessWidget {
   final GlobalKey shareKey;
   final String shareMessage;
+  final String provider;
   final DecisionSdkSpamService service;
 
-  const DecisionSdkSpamViewHeader(this.service, this.shareKey, this.shareMessage, {Key? key}) : super(key: key);
+  const DecisionSdkSpamViewHeader(this.service, this.shareKey, this.shareMessage, this.provider, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String provider = service.account?.provider;
     return Container(
         padding: EdgeInsets.only(left: service.decisionSdkService.style.size(24),
         right: service.decisionSdkService.style.size(24),

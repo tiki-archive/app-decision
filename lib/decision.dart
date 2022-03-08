@@ -25,11 +25,13 @@ class DecisionSdk {
 
   Widget home({bool example = false}) => _service.presenter.home();
 
-  Future<void> addSpamCards(
-          {required List<dynamic> messages,
-          required Function(int) unsubscribeCallback,
-          required Function(int) keepCallback}) =>
+  Future<void> addSpamCards({
+    required String provider,
+    required List<dynamic> messages,
+    required Function(int) unsubscribeCallback,
+    required Function(int) keepCallback}) =>
       _service.spam.addCards(
+          provider: provider,
           unsubscribeCallback: unsubscribeCallback,
           messages: messages,
           keepCallback: keepCallback);

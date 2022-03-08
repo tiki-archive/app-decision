@@ -60,22 +60,22 @@ class DecisionSdkSpamViewSecurity extends StatelessWidget {
         stars.add(Padding(
             padding: EdgeInsets.symmetric(horizontal: service.style.size(4)),
             child: Stack(children: [
-              Image.asset("star-grey", width: service.style.size(20)),
+              Image.asset("res/images/star-grey.png", width: service.style.size(20)),
               ClipRect(
                 child: Align(
                     alignment: Alignment.centerLeft,
                     widthFactor: 0.5,
-                    child: Image.asset("star-$color", width: service.style.size(20))),
+                    child: Image.asset("res/images/star-$color.png", package: 'decision', width: service.style.size(20))),
               ),
             ])));
       } else if (i >= starRate.ceil()) {
         stars.add(Padding(
             padding: EdgeInsets.symmetric(horizontal: service.style.size(2)),
-            child: Image.asset("star-grey", width: service.style.size(20))));
+            child: Image.asset("res/images/star-grey.png", package: 'decision', width: service.style.size(20))));
       } else {
         stars.add(Padding(
             padding: EdgeInsets.symmetric(horizontal: service.style.size(2)),
-            child: Image.asset("star-$color", width: service.style.size(20))));
+            child: Image.asset("res/images/star-$color.png", package: 'decision', width: service.style.size(20))));
       }
     }
     return stars;

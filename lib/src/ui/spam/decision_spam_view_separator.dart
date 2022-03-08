@@ -14,7 +14,7 @@ class DecisionSdkSpamViewSeparator extends StatelessWidget {
               margin: EdgeInsets.only(right: style.size(9)),
               height: 1,
               color: const Color(0xFFD8D8D8))),
-      Image.asset("icon-email", height: style.size(16)),
+      Image.asset("res/images/icon-email.png", package: 'decision', height: style.size(16)),
       Expanded(
           child: Container(
               margin: EdgeInsets.only(left: style.size(10)),
