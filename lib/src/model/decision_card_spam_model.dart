@@ -4,6 +4,7 @@ class DecisionSdkSpamModel {
   String? category;
   String? frequency;
   String? sinceYear;
+  String provider;
   int? totalEmails;
   double? openRate;
   double? securityScore;
@@ -19,6 +20,7 @@ class DecisionSdkSpamModel {
     this.category,
     required this.companyName,
     required this.frequency,
+    required this.provider,
     this.sinceYear,
     this.totalEmails,
     required this.openRate,

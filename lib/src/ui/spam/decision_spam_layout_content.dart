@@ -23,7 +23,7 @@ class DecisionSdkSpamLayoutContent extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-          DecisionSdkSpamViewHeader(service, shareKey, "mensagem"),
+          DecisionSdkSpamViewHeader(service, shareKey, "mensagem", cardSpamModel.provider),
           Padding(
               padding: EdgeInsets.only(left: service.decisionSdkService.style.size(12), right: service.decisionSdkService.style.size(12), top: service.decisionSdkService.style.size(16)),
               child: DecisionSdkSpamViewCompany(

@@ -15,7 +15,7 @@ class DecisionSdkSpamViewFrequency extends StatelessWidget {
       children: [
         Text("They send you emails",
             style: TextStyle(
-                fontSize: style.size(90),
+                fontSize: style.size(9),
                 fontWeight: FontWeight.w600,
                 color: const Color(0xFF00133F))),
         Padding(padding: EdgeInsets.only(top: style.size(6))),
