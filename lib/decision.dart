@@ -9,11 +9,13 @@ export 'src/model/decision_card_spam_model.dart';
 class DecisionSdk {
   late final DecisionSdkService _service;
 
+  dynamic apiAuthService;
+
   DecisionSdk({
     DecisionSdkStyle? style,
     bool isConnected = false,
     appiAppDataService,
-    apiAuthService,
+    this.apiAuthService,
     apiEmailSenderService,
     apiEmailMsgService,
     dataFetchService,
@@ -28,6 +30,7 @@ class DecisionSdk {
   );
 
   Future<DecisionSdk> init() async{
+    _service.model.isLinked = await apiAuthService.getAccount();
     await _service.addTests();
     await _service.getCards();
     return this;
