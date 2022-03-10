@@ -17,7 +17,7 @@ class DecisionSdkService extends ChangeNotifier {
   late final DecisionSdkSpamService spam;
   late final DecisionSdkStyle style;
 
-  final dynamic appiAppDataService;
+  final dynamic apiAppDataService;
   final dynamic apiEmailSenderService;
   final dynamic apiAuthService;
   final dynamic dataFetchService;
@@ -25,7 +25,7 @@ class DecisionSdkService extends ChangeNotifier {
 
   DecisionSdkService({
     required this.style,
-    required this.appiAppDataService,
+    required this.apiAppDataService,
     required this.apiEmailSenderService,
     required this.apiAuthService,
     required this.dataFetchService,

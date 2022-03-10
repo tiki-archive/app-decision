@@ -33,6 +33,33 @@ class DecisionSdkSpamService {
         .toList());
   }
 
+  Future<bool> unsubscribe(ApiOAuthModelAccount account,
+      String unsubscribeMailTo, String list) async {
+    DataFetchInterfaceEmail? interfaceEmail = await _getEmailInterface(account);
+    if (interfaceEmail == null) throw 'Invalid email interface';
+    if (!await _isConnected(account))
+      throw 'ApiOauthAccount ${account.provider} not connected.';
+
+    Uri uri = Uri.parse(unsubscribeMailTo);
+    String to = uri.path;
+    String subject = uri.queryParameters['subject'] ?? "Unsubscribe from $list";
+    String body = '''
+Hello,<br /><br />
+I'd like to stop receiving emails from this email list.<br /><br />
+Thanks,<br /><br />
+${account.displayName ?? ''}<br />
+<br />
+''';
+    bool success = false;
+    await interfaceEmail.send(
+        account: account,
+        to: to,
+        body: body,
+        subject: subject,
+        onResult: (res) => success = res);
+    return success;
+  }
+
   Future<void> unsubscribeCallback(int senderId) async {
     var sender = await decisionSdkService.apiEmailSenderService.getById(senderId);
     if (sender != null) {

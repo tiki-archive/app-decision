@@ -14,7 +14,7 @@ class DecisionSdk {
   DecisionSdk({
     DecisionSdkStyle? style,
     bool isConnected = false,
-    appiAppDataService,
+    apiAppDataService,
     this.apiAuthService,
     apiEmailSenderService,
     apiEmailMsgService,
@@ -22,7 +22,7 @@ class DecisionSdk {
     }) : _service = DecisionSdkService(
       style: style ?? DecisionSdkStyle(),
       isConnected: isConnected,
-      appiAppDataService: appiAppDataService,
+      apiAppDataService: apiAppDataService,
       apiAuthService: apiAuthService,
       apiEmailSenderService: apiEmailSenderService,
       apiEmailMsgService: apiEmailMsgService,
