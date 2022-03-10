@@ -17,28 +17,47 @@ class DecisionSdkSpamService {
 
   Future<void> addCards({
       required String provider,
-      required List<dynamic> messages,
-      required unsubscribeCallback,
-      required keepCallback}) async {
+      required List<dynamic> messages
+  }) async {
     List<DecisionSdkSpamModel> spamModels = [];
-    spamModels.add(DecisionSdkSpamModel(
-      logoUrl: messages[0].sender?.company?.logo,
-      category: messages[0].sender?.category,
-      companyName: messages[0].sender?.name,
-      frequency: _calculateFrequency(messages),
-      openRate: _calculateOpenRate(messages),
-      securityScore: messages[0].sender?.company?.securityScore,
-      sensitivityScore: messages[0].sender?.company?.sensitivityScore,
-      hackingScore: messages[0].sender?.company?.breachScore,
-      senderId: messages[0].sender.senderId,
-      senderEmail: messages[0].sender?.email,
-      totalEmails: messages.length,
-      sinceYear: messages[0].sender?.emailSince?.year.toString(),
-      provider: provider,
+    String calculatedFrequency = _calculateFrequency(messages);
+    double calculatedOpenRate = _calculateOpenRate(messages);
+    spamModels.add(DecisionSdkSpamModel.fromMessageList(
+        messages: messages,
+        calculatedFrequency: calculatedFrequency,
+        calculatedOpenRate: calculatedOpenRate,
+        dataProvider: provider
     ));
     decisionSdkService.addCards(spamModels
         .map((spamModel) => DecisionSdkSpamLayout(this, spamModel))
         .toList());
+  }
+
+  Future<void> unsubscribeCallback(int senderId) async {
+    var sender = await decisionSdkService.apiEmailSenderService.getById(senderId);
+    if (sender != null) {
+      try {
+        var account = (await decisionSdkService.apiAuthService.getAccount())!;
+        String? mailTo = sender.unsubscribeMailTo;
+        if (mailTo != null) {
+          String list = sender.name ?? sender.email!;
+          decisionSdkService.dataFetchService.email.unsubscribe(account, mailTo, list).then(
+                  (success) => _log.finest(
+                  mailTo + ' unsubscribed status: ' + success.toString()));
+          await decisionSdkService.apiEmailSenderService.markAsUnsubscribed(sender);
+        }
+      } catch (e) {
+        _log.warning(
+            'Failed to unsubscribe from: ' + sender.unsubscribeMailTo!, e);
+      }
+    }
+  }
+
+  Future<void> keepCallback(int senderId) async {
+    var sender = await decisionSdkService.apiEmailSenderService.getById(senderId);
+    if (sender != null) {
+      await decisionSdkService.apiEmailSenderService.markAsKept(sender);
+    }
   }
 
   String _calculateFrequency(List<dynamic> messages) {

@@ -17,9 +17,7 @@ class DecisionSdkLayout extends StatelessWidget {
         ? LayoutBuilder(
             builder: (context, constraints) => DecisionSdkViewStack(
                 noCardsPlaceholder: const DecisionSdkViewEmpty(),
-                // TODO MAX 3 CARDS
-                // todo add to ignore list
-                children: service.model.cards
+                children: service.model.cards.getRange(0, 3)
                     .map((card) => DecisionSdkViewCard(
                         constraints: constraints,
                         onSwipeRight: () => service.controller.removeCard(

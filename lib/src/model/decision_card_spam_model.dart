@@ -12,8 +12,6 @@ class DecisionSdkSpamModel {
   double? hackingScore;
   String? senderEmail;
   late int senderId;
-  Function? keepCallback;
-  Function? unsubscribeCallback;
 
   DecisionSdkSpamModel({
     this.logoUrl,
@@ -63,6 +61,26 @@ class DecisionSdkSpamModel {
       hackingScore.hashCode ^
       senderEmail.hashCode ^
       senderId.hashCode;
+
+  DecisionSdkSpamModel.fromMessageList({
+    required List messages,
+    required String dataProvider,
+    required String calculatedFrequency,
+    required double calculatedOpenRate,
+  }) :
+    logoUrl = messages[0].sender?.company?.logo,
+    category = messages[0].sender?.category,
+    companyName = messages[0].sender?.name,
+    frequency = calculatedFrequency,
+    openRate = calculatedOpenRate,
+    securityScore = messages[0].sender?.company?.securityScore,
+    sensitivityScore = messages[0].sender?.company?.sensitivityScore,
+    hackingScore = messages[0].sender?.company?.breachScore,
+    senderId = messages[0].sender.senderId,
+    senderEmail = messages[0].sender?.email,
+    totalEmails = messages.length,
+    sinceYear = messages[0].sender?.emailSince?.year.toString(),
+    provider = dataProvider;
 }
 
 enum DecisionSdkSpamFrequency { daily, weekly, monthly }

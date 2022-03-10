@@ -6,7 +6,6 @@ import 'model/decision_model.dart';
 import 'decision_controller.dart';
 import 'decision_presenter.dart';
 import 'decision_style.dart';
-import 'ui/decision_abstract_card.dart';
 import 'ui/decision_view_card_test.dart';
 
 class DecisionSdkService extends ChangeNotifier {
@@ -17,23 +16,26 @@ class DecisionSdkService extends ChangeNotifier {
   late final DecisionSdkController controller;
   late final DecisionSdkSpamService spam;
   late final DecisionSdkStyle style;
-  late final Function _testDoneCallback;
 
-  DecisionSdkService(
-      {required this.style,
-      bool isTestDone = false,
-      bool isConnected = false,
-      Function? testDoneCallback,
-      List<DecisionSdkAbstractCard>? cards}) {
+  final dynamic appiAppDataService;
+  final dynamic apiEmailSenderService;
+  final dynamic apiAuthService;
+  final dynamic dataFetchService;
+  final dynamic apiEmailMsgService;
+
+  DecisionSdkService({
+    required this.style,
+    required this.appiAppDataService,
+    required this.apiEmailSenderService,
+    required this.apiAuthService,
+    required this.dataFetchService,
+    required this.apiEmailMsgService,
+    bool isConnected = false,
+  }) {
     presenter = DecisionSdkPresenter(this);
     model = DecisionSdkModel();
     controller = DecisionSdkController(this);
     spam = DecisionSdkSpamService(this);
-    model.isTestDone = isTestDone;
-    model.isLinked = isConnected;
-    _testDoneCallback = testDoneCallback ?? () => _log.finest('test done');
-    if (!model.isTestDone) _addTests();
-    if (cards != null) addCards(cards);
   }
 
   Future<void> addCards(List<dynamic> cards) async {
@@ -44,12 +46,6 @@ class DecisionSdkService extends ChangeNotifier {
     }
   }
 
-  void removeAllCards() {
-    model.cards = [];
-    if (!model.isTestDone) _addTests();
-    notifyListeners();
-  }
-
   void removeCard(int index) {
     model.cards.removeAt(index);
     notifyListeners();
@@ -57,10 +53,11 @@ class DecisionSdkService extends ChangeNotifier {
 
   Future<void> testDone() async {
     model.isTestDone = true;
-    _testDoneCallback();
+    appiAppDataService.saveByStringKey('test_done_bool', 'true');
+    notifyListeners();
   }
 
-  Future<void> _addTests() async {
+  Future<void> addTests() async {
     if (!model.isTestDone && !model.testCardsAdded) {
       model.cards.addAll(List<DecisionSdkViewCardTest>.generate(
               3, (index) => DecisionSdkViewCardTest(index, style))
@@ -68,6 +65,22 @@ class DecisionSdkService extends ChangeNotifier {
           .toList());
       model.testCardsAdded = true;
       model.isPending = true;
+    }
+  }
+
+  Future<void> getCards() async {
+    String? provider = (await apiAuthService.getAccount())?.provider;
+    if(provider != null) {
+      List senders = await apiEmailSenderService.getUnsubscribed();
+      Map<String, List> messages = await apiEmailMsgService.getBySenders(senders);
+      for (var sender in senders) {
+        List? msgs = messages[sender.email!];
+        if (msgs != null && msgs.isNotEmpty) {
+          spam.addCards(
+              messages: msgs,
+              provider: provider);
+        }
+      }
     }
   }
 }
