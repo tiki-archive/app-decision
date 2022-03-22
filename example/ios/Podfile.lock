@@ -1,0 +1,28 @@
+PODS:
+  - decision_sdk (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - url_launcher_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - decision_sdk (from `.symlinks/plugins/decision_sdk/ios`)
+  - Flutter (from `Flutter`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+
+EXTERNAL SOURCES:
+  decision_sdk:
+    :path: ".symlinks/plugins/decision_sdk/ios"
+  Flutter:
+    :path: Flutter
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+
+SPEC CHECKSUMS:
+  decision_sdk: 8878655a54f9ce8c936a67e84c47d4b6a28dc526
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.11.2
