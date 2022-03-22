@@ -1,20 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:logging/logging.dart';
 
-import 'decision_spam_service.dart';
-import 'model/decision_model.dart';
 import 'decision_controller.dart';
 import 'decision_presenter.dart';
 import 'decision_style.dart';
+import 'model/decision_model.dart';
 import 'ui/decision_view_card_test.dart';
 
 class DecisionSdkService extends ChangeNotifier {
-  final Logger _log = Logger('DecisionSdkService');
-
   late final DecisionSdkModel model;
   late final DecisionSdkPresenter presenter;
   late final DecisionSdkController controller;
-  late final DecisionSdkSpamService spam;
   late final DecisionSdkStyle style;
 
   final dynamic apiAppDataService;
@@ -35,7 +30,6 @@ class DecisionSdkService extends ChangeNotifier {
     presenter = DecisionSdkPresenter(this);
     model = DecisionSdkModel();
     controller = DecisionSdkController(this);
-    spam = DecisionSdkSpamService(this);
   }
 
   Future<void> addCards(List<dynamic> cards) async {
@@ -53,7 +47,7 @@ class DecisionSdkService extends ChangeNotifier {
 
   Future<void> testDone() async {
     model.isTestDone = true;
-    appiAppDataService.saveByStringKey('test_done_bool', 'true');
+    apiAppDataService.saveByStringKey('test_done_bool', 'true');
     notifyListeners();
   }
 
@@ -65,22 +59,6 @@ class DecisionSdkService extends ChangeNotifier {
           .toList());
       model.testCardsAdded = true;
       model.isPending = true;
-    }
-  }
-
-  Future<void> getCards() async {
-    String? provider = (await apiAuthService.getAccount())?.provider;
-    if(provider != null) {
-      List senders = await apiEmailSenderService.getUnsubscribed();
-      Map<String, List> messages = await apiEmailMsgService.getBySenders(senders);
-      for (var sender in senders) {
-        List? msgs = messages[sender.email!];
-        if (msgs != null && msgs.isNotEmpty) {
-          spam.addCards(
-              messages: msgs,
-              provider: provider);
-        }
-      }
     }
   }
 }

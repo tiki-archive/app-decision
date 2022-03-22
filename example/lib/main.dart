@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:decision_sdk/decision.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,8 +20,6 @@ class _MyAppState extends State<MyApp> {
             appBar: AppBar(
               title: const Text('Decision example app'),
             ),
-            body: DecisionSdk(isConnected: true).home()
-        )
-    );
+            body: DecisionSdk(isConnected: true).decisionWidget()));
   }
 }

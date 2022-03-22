@@ -6,11 +6,11 @@ class DecisionSdkStyle extends DecisionSdkUtilsStyle {
   final String _leftImage;
   final String _rightImage;
 
-  DecisionSdkStyle(
-      {textFont = 'NunitoSans',
-      bigTxtFontFamily = 'Koara',
-      leftImage = 'yes',
-      rightImage = 'no'})
+  DecisionSdkStyle({
+    textFont = 'NunitoSans',
+    bigTxtFontFamily = 'Koara',
+    leftImage = 'yes',
+    rightImage = 'no'})
       : _textFont = textFont,
         _bigTxtFontFamily = bigTxtFontFamily,
         _leftImage = leftImage,
