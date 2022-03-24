@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiki_kv/tiki_kv.dart';
 
 import 'src/decision_service.dart';
 import 'src/decision_style.dart';
@@ -13,23 +14,15 @@ class DecisionSdk {
 
   DecisionSdk({
     DecisionSdkStyle? style,
+    TikiKv? tikiKv,
     bool isConnected = false,
-    apiAppDataService,
-    this.apiAuthService,
-    apiEmailSenderService,
-    apiEmailMsgService,
-    dataFetchService,
   }) : _service = DecisionSdkService(
-            style: style ?? DecisionSdkStyle(),
-            isConnected: isConnected,
-            apiAppDataService: apiAppDataService,
-            apiAuthService: apiAuthService,
-            apiEmailSenderService: apiEmailSenderService,
-            apiEmailMsgService: apiEmailMsgService,
-            dataFetchService: dataFetchService);
+          style: style ?? DecisionSdkStyle(),
+          tikiKv: tikiKv,
+          isConnected: isConnected,
+        );
 
   Future<DecisionSdk> init() async {
-    _service.model.isLinked = await apiAuthService.getAccount();
     await _service.addTests();
     return this;
   }
