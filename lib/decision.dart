@@ -10,8 +10,6 @@ export 'src/ui/decision_abstract_card.dart';
 class DecisionSdk {
   late final DecisionSdkService _service;
 
-  dynamic apiAuthService;
-
   DecisionSdk({
     DecisionSdkStyle? style,
     TikiKv? tikiKv,
