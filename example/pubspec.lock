@@ -56,7 +56,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -227,10 +227,12 @@ packages:
   tiki_kv:
     dependency: transitive
     description:
-      path: "../../tiki_kv"
-      relative: true
-    source: path
-    version: "0.0.1"
+      path: "."
+      ref: "0.0.2"
+      resolved-ref: e40ee68b075de081a7705a075f96324aef6bcefa
+      url: "https://github.com/tiki/tiki_kv"
+    source: git
+    version: "0.0.2"
   typed_data:
     dependency: transitive
     description:

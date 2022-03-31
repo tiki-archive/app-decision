@@ -29,4 +29,9 @@ class DecisionSdk {
 
   void addCards(List<DecisionSdkAbstractCard> cards) =>
       _service.addCards(cards);
+
+  void setLinked(bool isLinked) {
+    _service.model.isLinked = isLinked;
+    _service.notifyListeners();
+  }
 }

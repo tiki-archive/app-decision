@@ -17,7 +17,12 @@ class DecisionSdkLayout extends StatelessWidget {
         ? LayoutBuilder(
             builder: (context, constraints) => DecisionSdkViewStack(
                 noCardsPlaceholder: const DecisionSdkViewEmpty(),
-                children: service.model.cards.getRange(0, 3)
+                children: service.model.cards
+                    .getRange(
+                        0,
+                        service.model.cards.length >= 3
+                            ? 3
+                            : service.model.cards.length)
                     .map((card) => DecisionSdkViewCard(
                         constraints: constraints,
                         onSwipeRight: () => service.controller.removeCard(

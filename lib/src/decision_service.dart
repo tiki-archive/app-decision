@@ -32,6 +32,9 @@ class DecisionSdkService extends ChangeNotifier {
         model.cards.add(card);
       }
     }
+    if (model.cards.isNotEmpty && model.cards.length <= 3) {
+      notifyListeners();
+    }
   }
 
   void removeCard(int index) {
