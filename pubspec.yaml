@@ -1,5 +1,5 @@
-name: decision_sdk
-description: DecisionSdk sdk for TIKI
+name: decision
+description: Decision sdk for TIKI
 version: 0.0.3
 homepage: https://github.com/tiki/decision
 repository: https://github.com/tiki/decision
@@ -26,58 +26,5 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 flutter:
-  plugin:
-    platforms:
-      android:
-        package: com.mytiki.decision_sdk
-        pluginClass: DecisionSdkPlugin
-      ios:
-        pluginClass: DecisionSdkPlugin
-
   assets:
     - res/images/
-  fonts:
-    - family: Koara
-      fonts:
-        - asset: res/fonts/Koara-Bold.ttf
-          weight: 700
-        - asset: res/fonts/Koara-Regular.ttf
-        - asset: res/fonts/Koara-Light.ttf
-          weight: 300
-    - family: NunitoSans
-      fonts:
-        - asset: res/fonts/NunitoSans-Black.ttf
-          weight: 900
-        - asset: res/fonts/NunitoSans-BlackItalic.ttf
-          weight: 900
-          style: italic
-        - asset: res/fonts/NunitoSans-ExtraBold.ttf
-          weight: 800
-        - asset: res/fonts/NunitoSans-ExtraBoldItalic.ttf
-          weight: 800
-          style: italic
-        - asset: res/fonts/NunitoSans-Bold.ttf
-          weight: 700
-        - asset: res/fonts/NunitoSans-BoldItalic.ttf
-          weight: 700
-          style: italic
-        - asset: res/fonts/NunitoSans-SemiBold.ttf
-          weight: 600
-        - asset: res/fonts/NunitoSans-SemiBoldItalic.ttf
-          weight: 600
-          style: italic
-        - asset: res/fonts/NunitoSans-Regular.ttf
-          weight: 400
-        - asset: res/fonts/NunitoSans-Italic.ttf
-          weight: 400
-          style: italic
-        - asset: res/fonts/NunitoSans-Light.ttf
-          weight: 300
-        - asset: res/fonts/NunitoSans-LightItalic.ttf
-          weight: 300
-          style: italic
-        - asset: res/fonts/NunitoSans-ExtraLight.ttf
-          weight: 200
-        - asset: res/fonts/NunitoSans-ExtraLightItalic.ttf
-          weight: 200
-          style: italic

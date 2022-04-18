@@ -7,28 +7,27 @@ import 'src/ui/decision_abstract_card.dart';
 
 export 'src/ui/decision_abstract_card.dart';
 
-class DecisionSdk {
-  late final DecisionSdkService _service;
+class Decision {
+  late final DecisionService _service;
 
-  DecisionSdk({
-    DecisionSdkStyle? style,
+  Decision({
+    DecisionStyle? style,
     TikiKv? tikiKv,
     bool isConnected = false,
-  }) : _service = DecisionSdkService(
-          style: style ?? DecisionSdkStyle(),
+  }) : _service = DecisionService(
+          style: style ?? DecisionStyle(),
           tikiKv: tikiKv,
           isConnected: isConnected,
         );
 
-  Future<DecisionSdk> init() async {
+  Future<Decision> init() async {
     await _service.addTests();
     return this;
   }
 
   Widget decisionWidget({bool example = false}) => _service.presenter.home();
 
-  void addCards(List<DecisionSdkAbstractCard> cards) =>
-      _service.addCards(cards);
+  void addCards(List<DecisionAbstractCard> cards) => _service.addCards(cards);
 
   void setLinked(bool isLinked) {
     _service.model.isLinked = isLinked;

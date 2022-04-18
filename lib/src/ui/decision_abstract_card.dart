@@ -4,7 +4,7 @@
  */
 import 'package:flutter/material.dart';
 
-abstract class DecisionSdkAbstractCard {
+abstract class DecisionAbstractCard {
   Future<void> callbackNo(BuildContext context);
 
   Future<void> callbackYes(BuildContext context);

@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 import '../../src/decision_service.dart';
 import 'ui/decision_layout.dart';
 
-class DecisionSdkPresenter {
-  final DecisionSdkService service;
+class DecisionPresenter {
+  final DecisionService service;
 
-  DecisionSdkPresenter(this.service);
+  DecisionPresenter(this.service);
 
-  ChangeNotifierProvider<DecisionSdkService> home() {
+  ChangeNotifierProvider<DecisionService> home() {
     return ChangeNotifierProvider.value(
-        value: service, child: const DecisionSdkLayout());
+        value: service, child: const DecisionLayout());
   }
 }

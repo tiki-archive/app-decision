@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+
 import '../decision_style.dart';
 
-class DecisionSdkViewCard extends StatefulWidget {
+class DecisionViewCard extends StatefulWidget {
   final Widget child;
   final Function onSwipeRight;
   final Function onSwipeLeft;
   final BoxConstraints constraints;
-  final DecisionSdkStyle style;
+  final DecisionStyle style;
 
-  const DecisionSdkViewCard(
+  const DecisionViewCard(
       {Key? key,
       required this.child,
       required this.onSwipeRight,
@@ -21,7 +22,7 @@ class DecisionSdkViewCard extends StatefulWidget {
   State<StatefulWidget> createState() => _DecisionSdkCardViewState();
 }
 
-class _DecisionSdkCardViewState extends State<DecisionSdkViewCard> {
+class _DecisionSdkCardViewState extends State<DecisionViewCard> {
   double delta = 0;
   double top = 0;
   double lastDx = 0;
@@ -97,7 +98,7 @@ class _DecisionSdkCardViewState extends State<DecisionSdkViewCard> {
                                   opacity: getopacityYes(),
                                   child: Image.asset('res/images/yes-label.png',
                                       height: widget.style.size(240),
-                                      package: 'decision_sdk')))),
+                                      package: 'decision')))),
                       Positioned(
                           right: -60,
                           top: 100,
@@ -107,7 +108,7 @@ class _DecisionSdkCardViewState extends State<DecisionSdkViewCard> {
                                 opacity: getOpacityNo(),
                                 child: Image.asset('res/images/nope-label.png',
                                     height: widget.style.size(240),
-                                    package: 'decision_sdk')),
+                                    package: 'decision')),
                           ))
                     ])))));
   }

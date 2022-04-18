@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'decision_service.dart';
 
-class DecisionSdkController {
-  final DecisionSdkService service;
+class DecisionController {
+  final DecisionService service;
 
-  DecisionSdkController(this.service);
+  DecisionController(this.service);
 
   void removeCard(
       {required BuildContext context,

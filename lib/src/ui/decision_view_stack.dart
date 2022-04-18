@@ -3,17 +3,17 @@ import 'package:provider/provider.dart';
 
 import '../decision_service.dart';
 
-class DecisionSdkViewStack extends StatelessWidget {
+class DecisionViewStack extends StatelessWidget {
   final List<Widget> children;
   final Widget noCardsPlaceholder;
 
-  const DecisionSdkViewStack(
+  const DecisionViewStack(
       {Key? key, required this.noCardsPlaceholder, required this.children})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DecisionSdkService service = Provider.of<DecisionSdkService>(context);
+    DecisionService service = Provider.of<DecisionService>(context);
     return Container(
         decoration: BoxDecoration(
             borderRadius:

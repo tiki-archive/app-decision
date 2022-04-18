@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../decision_service.dart';
 
-class DecisionSdkViewEmpty extends StatelessWidget {
+class DecisionViewEmpty extends StatelessWidget {
   static const String _noMore = "No more data decisions.\n";
   static const String _party = "You can now go party!";
   static const String _notNow =
@@ -16,18 +16,18 @@ class DecisionSdkViewEmpty extends StatelessWidget {
 
   static const double _fontSize = 15;
 
-  const DecisionSdkViewEmpty({Key? key}) : super(key: key);
+  const DecisionViewEmpty({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DecisionSdkService service = Provider.of<DecisionSdkService>(context);
+    DecisionService service = Provider.of<DecisionService>(context);
     return Container(
         width: double.maxFinite,
         padding: EdgeInsets.only(top: service.style.size(100)),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Image.asset(
             'res/images/pineapple-floatie.png',
-            package: 'decision_sdk',
+            package: 'decision',
             height: service.style.size(115),
             fit: BoxFit.fitHeight,
           ),

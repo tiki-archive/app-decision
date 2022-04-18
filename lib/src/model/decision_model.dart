@@ -5,8 +5,8 @@
 
 import '../ui/decision_abstract_card.dart';
 
-class DecisionSdkModel {
-  List<DecisionSdkAbstractCard> cards = [];
+class DecisionModel {
+  List<DecisionAbstractCard> cards = [];
   bool isLinked = false;
   bool isPending = false;
   bool isTestDone = false;
