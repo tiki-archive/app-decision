@@ -1,4 +1,4 @@
-package com.mytiki.decision_example
+package com.mytiki.decision.example
 
 import io.flutter.embedding.android.FlutterActivity
 

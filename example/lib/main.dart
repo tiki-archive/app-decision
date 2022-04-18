@@ -1,4 +1,4 @@
-import 'package:decision_sdk/decision.dart';
+import 'package:decision/decision.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,6 +20,6 @@ class _MyAppState extends State<MyApp> {
             appBar: AppBar(
               title: const Text('Decision example app'),
             ),
-            body: DecisionSdk(isConnected: true).decisionWidget()));
+            body: Decision(isConnected: true).decisionWidget()));
   }
 }

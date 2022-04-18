@@ -7,20 +7,20 @@ import 'package:provider/provider.dart';
 
 import '../decision_service.dart';
 
-class DecisionSdkViewLink extends StatelessWidget {
+class DecisionViewLink extends StatelessWidget {
   static const String _add = "Add an email account";
   static const String _choices = "to start making choices";
 
-  const DecisionSdkViewLink({Key? key}) : super(key: key);
+  const DecisionViewLink({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    DecisionSdkService service = Provider.of<DecisionSdkService>(context);
+    DecisionService service = Provider.of<DecisionService>(context);
     return Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
       Image(
         image: const AssetImage('res/images/pineapple-cry.png',
-            package: 'decision_sdk'),
+            package: 'decision'),
         height: service.style.size(120),
         fit: BoxFit.fitHeight,
       ),

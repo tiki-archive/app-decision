@@ -5,7 +5,7 @@ import '../decision_service.dart';
 import '../decision_style.dart';
 import 'decision_abstract_card.dart';
 
-class DecisionSdkViewCardTest implements DecisionSdkAbstractCard {
+class DecisionViewCardTest implements DecisionAbstractCard {
   static const double _fontSizeText = 12.5;
   static const String _test = "Test card\n";
   static const String _testHow =
@@ -23,9 +23,9 @@ class DecisionSdkViewCardTest implements DecisionSdkAbstractCard {
   ];
 
   final int cardnum;
-  final DecisionSdkStyle style;
+  final DecisionStyle style;
 
-  DecisionSdkViewCardTest(this.cardnum, this.style);
+  DecisionViewCardTest(this.cardnum, this.style);
 
   @override
   Future<void> callbackNo(BuildContext context) => _testDone(context);
@@ -56,7 +56,7 @@ class DecisionSdkViewCardTest implements DecisionSdkAbstractCard {
                   child: Center(
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Image.asset("res/images/${icons[cardnum]}.png",
-                    height: style.size(120), package: 'decision_sdk'),
+                    height: style.size(120), package: 'decision'),
                 Container(
                     margin: EdgeInsets.only(top: style.size(40)),
                     child: Text(
@@ -104,7 +104,7 @@ class DecisionSdkViewCardTest implements DecisionSdkAbstractCard {
 
   Future<void> _testDone(context) async {
     if (cardnum + 1 == icons.length) {
-      var service = Provider.of<DecisionSdkService>(context, listen: false);
+      var service = Provider.of<DecisionService>(context, listen: false);
       service.testDone();
     }
   }

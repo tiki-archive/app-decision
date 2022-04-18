@@ -1,16 +1,16 @@
 import 'utils/decision_utils_style.dart';
 
-class DecisionSdkStyle extends DecisionSdkUtilsStyle {
+class DecisionStyle extends DecisionUtilsStyle {
   final String _textFont;
   final String _bigTxtFontFamily;
   final String _leftImage;
   final String _rightImage;
 
-  DecisionSdkStyle({
-    textFont = 'NunitoSans',
-    bigTxtFontFamily = 'Koara',
-    leftImage = 'yes',
-    rightImage = 'no'})
+  DecisionStyle(
+      {textFont = 'NunitoSans',
+      bigTxtFontFamily = 'Koara',
+      leftImage = 'yes',
+      rightImage = 'no'})
       : _textFont = textFont,
         _bigTxtFontFamily = bigTxtFontFamily,
         _leftImage = leftImage,
