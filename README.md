@@ -1,15 +1,16 @@
-# decision sdk
+# Decision
+Decision screen for TIKI app.
 
-DecisionSdk sdk for TIKI
+## How to Use
+1. Build the DecisionSdk object passing a boolean to inform the connection state of the linked user accounts.
+2. Use the `init()` method to initialize the test cards.
+3. Render the Decision Screen with `decisionWidget()`.
+4. Add cards to the stack through `addCards()` method.
+5. To update the linked account state use the `setLinked()`method.
 
-## Getting Started
+## How to contribute
+Thank you for contributing with the data revolution!    
+All the information about contribution can be found in [CONTRIBUTING](https://github.com/tiki/app/CONTRIBUTING.md)
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+## License
+MIT license
