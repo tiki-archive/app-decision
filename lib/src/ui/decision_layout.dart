@@ -33,7 +33,6 @@ class DecisionLayout extends StatelessWidget {
                             context: context,
                             index: service.model.cards.indexOf(card),
                             callback: card.callbackNo),
-                        style: service.style,
                         child: card.content(context)))
                     .toList()))
         : const DecisionViewLink();

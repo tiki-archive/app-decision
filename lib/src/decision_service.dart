@@ -3,7 +3,6 @@ import 'package:tiki_kv/tiki_kv.dart';
 
 import 'decision_controller.dart';
 import 'decision_presenter.dart';
-import 'decision_style.dart';
 import 'model/decision_model.dart';
 import 'model/decision_tiki_kv_keys.dart';
 import 'ui/decision_view_card_test.dart';
@@ -12,12 +11,10 @@ class DecisionService extends ChangeNotifier {
   late final DecisionModel model;
   late final DecisionPresenter presenter;
   late final DecisionController controller;
-  late final DecisionStyle style;
 
   final TikiKv? tikiKv;
 
   DecisionService({
-    required this.style,
     required this.tikiKv,
     bool isConnected = false,
   }) {
@@ -53,9 +50,14 @@ class DecisionService extends ChangeNotifier {
   Future<void> addTests() async {
     if (!model.isTestDone && !model.testCardsAdded) {
       model.cards.addAll(List<DecisionViewCardTest>.generate(
-          3, (index) => DecisionViewCardTest(index, style)).reversed.toList());
+          3, (index) => DecisionViewCardTest(index)).reversed.toList());
       model.testCardsAdded = true;
       model.isPending = true;
     }
+  }
+
+  setLinked(bool isLinked){
+    model.isLinked = isLinked;
+    notifyListeners();
   }
 }
