@@ -17,26 +17,26 @@ class DecisionViewLink extends StatelessWidget {
     return Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
       SizedBox(
-        child: FittedBox(
           child: ImgProvider.pineappleCry,
-          fit: BoxFit.fitHeight),
         height: SizeProvider.instance.size(120),
       ),
       Padding(
           padding: EdgeInsets.only(top: SizeProvider.instance.size(10)),
           child: Text(_add,
               style: TextStyle(
-                  fontFamily: SizeProvider.instance.bigTxtFontFamily,
+                  fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
                   fontSize: SizeProvider.instance.text(15),
-                  color: const Color(0xFFE89933),
+                  color: ColorProvider.orange,
                   fontWeight: FontWeight.bold))),
       Padding(
           padding: EdgeInsets.only(top: SizeProvider.instance.size(3)),
           child: Text(_choices,
               style: TextStyle(
-                  fontFamily: SizeProvider.instance.bigTxtFontFamily,
+                  fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
                   fontSize: SizeProvider.instance.text(15),
-                  color: const Color(0xFF00133F),
+                  color: ColorProvider.orange,
                   fontWeight: FontWeight.bold)))
     ]));
   }

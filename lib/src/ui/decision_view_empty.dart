@@ -39,7 +39,8 @@ class DecisionViewEmpty extends StatelessWidget {
                       text: TextSpan(
                           text: _justASec,
                           style: TextStyle(
-                              fontFamily: SizeProvider.instance.bigTxtFontFamily,
+                              fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
                               fontSize: SizeProvider.instance.text(_fontSize),
                               color: const Color(0xFF0036B5),
                               fontWeight: FontWeight.bold),
@@ -47,7 +48,8 @@ class DecisionViewEmpty extends StatelessWidget {
                           TextSpan(
                               text: _notNow,
                               style: TextStyle(
-                                  fontFamily: SizeProvider.instance.bigTxtFontFamily,
+                                  fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
                                   fontSize: SizeProvider.instance.text(_fontSize),
                                   color: const Color(0xFF00133F),
                                   fontWeight: FontWeight.bold))
@@ -56,7 +58,8 @@ class DecisionViewEmpty extends StatelessWidget {
                       text: TextSpan(
                           text: _noMore,
                           style: TextStyle(
-                              fontFamily: SizeProvider.instance.bigTxtFontFamily,
+                              fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
                               fontSize: SizeProvider.instance.text(_fontSize),
                               color: const Color(0xFF0036B5),
                               fontWeight: FontWeight.bold),
@@ -64,7 +67,8 @@ class DecisionViewEmpty extends StatelessWidget {
                           TextSpan(
                               text: _party,
                               style: TextStyle(
-                                  fontFamily: SizeProvider.instance.bigTxtFontFamily,
+                                  fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
                                   fontSize: SizeProvider.instance.text(_fontSize),
                                   color: const Color(0xFF00133F),
                                   fontWeight: FontWeight.bold))
