@@ -19,12 +19,10 @@ dependencies:
     git:
       url: https://github.com/tiki/tiki_kv
       ref: 0.0.2
+  style:
+    path: ../style
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-
-flutter:
-  assets:
-    - res/images/
