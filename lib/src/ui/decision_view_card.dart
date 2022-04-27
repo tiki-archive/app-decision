@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-
-import '../decision_style.dart';
+import 'package:tiki_style/tiki_style.dart';
 
 class DecisionViewCard extends StatefulWidget {
   final Widget child;
   final Function onSwipeRight;
   final Function onSwipeLeft;
   final BoxConstraints constraints;
-  final DecisionStyle style;
 
   const DecisionViewCard(
       {Key? key,
@@ -15,7 +13,7 @@ class DecisionViewCard extends StatefulWidget {
       required this.onSwipeRight,
       required this.onSwipeLeft,
       required this.constraints,
-      required this.style})
+      })
       : super(key: key);
 
   @override
@@ -27,26 +25,26 @@ class _DecisionSdkCardViewState extends State<DecisionViewCard> {
   double top = 0;
   double lastDx = 0;
 
-  get angle => delta.abs() / widget.style.size(375) > 45
+  get angle => delta.abs() / SizeProvider.instance.size(375) > 45
       ? 45
-      : -delta / widget.style.size(375);
+      : -delta / SizeProvider.instance.size(375);
 
   double getopacityYes() {
     if (delta < 0) {
       return 0;
     }
-    return delta.abs() * 3 / widget.style.size(375) > 1
+    return delta.abs() * 3 / SizeProvider.instance.size(375) > 1
         ? 1.0
-        : delta.abs() * 3 / widget.style.size(375);
+        : delta.abs() * 3 / SizeProvider.instance.size(375);
   }
 
   double getOpacityNo() {
     if (delta > 0) {
       return 0;
     }
-    return delta.abs() * 3 / widget.style.size(375) > 1
+    return delta.abs() * 3 / SizeProvider.instance.size(375) > 1
         ? 1.0
-        : delta.abs() * 3 / widget.style.size(375);
+        : delta.abs() * 3 / SizeProvider.instance.size(375);
   }
 
   get left => delta;
@@ -60,9 +58,9 @@ class _DecisionSdkCardViewState extends State<DecisionViewCard> {
             width: widget.constraints.maxWidth,
             height: widget.constraints.maxHeight,
             padding: EdgeInsets.only(
-                left: widget.style.size(7),
-                right: widget.style.size(7),
-                bottom: widget.style.size(7)),
+                left: SizeProvider.instance.size(7),
+                right: SizeProvider.instance.size(7),
+                bottom: SizeProvider.instance.size(7)),
             child: GestureDetector(
                 onPanEnd: onDragEnd,
                 onPanUpdate: onDragUpdate,
@@ -82,11 +80,11 @@ class _DecisionSdkCardViewState extends State<DecisionViewCard> {
                                   ]
                                 : [],
                             borderRadius: BorderRadius.all(
-                                Radius.circular(widget.style.size(15))),
+                                Radius.circular(SizeProvider.instance.size(15))),
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(
-                                Radius.circular(widget.style.size(15))),
+                                Radius.circular(SizeProvider.instance.size(15))),
                             child: widget.child,
                           )),
                       Positioned(
@@ -96,9 +94,9 @@ class _DecisionSdkCardViewState extends State<DecisionViewCard> {
                               alignment: Alignment.topLeft,
                               child: Opacity(
                                   opacity: getopacityYes(),
-                                  child: Image.asset('res/images/yes-label.png',
-                                      height: widget.style.size(240),
-                                      package: 'decision')))),
+                                  child: SizedBox(
+                                      height: SizeProvider.instance.size(240),
+                                      child: ImgProvider.yesLabel)))),
                       Positioned(
                           right: -60,
                           top: 100,
@@ -106,10 +104,9 @@ class _DecisionSdkCardViewState extends State<DecisionViewCard> {
                             alignment: Alignment.topRight,
                             child: Opacity(
                                 opacity: getOpacityNo(),
-                                child: Image.asset('res/images/nope-label.png',
-                                    height: widget.style.size(240),
-                                    package: 'decision')),
-                          ))
+                                child: SizedBox(
+                                    height: SizeProvider.instance.size(240),
+                                    child: ImgProvider.nopeLabel)))),
                     ])))));
   }
 

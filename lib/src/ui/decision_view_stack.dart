@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:tiki_style/tiki_style.dart';
 
-import '../decision_service.dart';
 
 class DecisionViewStack extends StatelessWidget {
   final List<Widget> children;
@@ -13,11 +12,10 @@ class DecisionViewStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DecisionService service = Provider.of<DecisionService>(context);
     return Container(
         decoration: BoxDecoration(
             borderRadius:
-                BorderRadius.all(Radius.circular(service.style.size(15)))),
+                BorderRadius.all(Radius.circular(SizeProvider.instance.size(15)))),
         width: double.infinity,
         child: Stack(clipBehavior: Clip.none, children: [
           noCardsPlaceholder,

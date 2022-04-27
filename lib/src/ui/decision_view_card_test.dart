@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tiki_style/tiki_style.dart';
 
 import '../decision_service.dart';
-import '../decision_style.dart';
 import 'decision_abstract_card.dart';
 
 class DecisionViewCardTest implements DecisionAbstractCard {
@@ -16,16 +16,9 @@ class DecisionViewCardTest implements DecisionAbstractCard {
       "you can only undo your action by\ngoing to the email list’s website.";
   static const String _testCardBarText = 'TEST CARD #';
 
-  final icons = [
-    "test-card-watermelon",
-    "test-card-pineapple",
-    "test-card-lemon",
-  ];
-
   final int cardnum;
-  final DecisionStyle style;
 
-  DecisionViewCardTest(this.cardnum, this.style);
+  DecisionViewCardTest(this.cardnum);
 
   @override
   Future<void> callbackNo(BuildContext context) => _testDone(context);
@@ -35,6 +28,12 @@ class DecisionViewCardTest implements DecisionAbstractCard {
 
   @override
   Widget content(BuildContext context) {
+    SizeProvider style = SizeProvider.instance;
+    final icons = [
+      ImgProvider.testCardWatermelon,
+      ImgProvider.testCardPineapple,
+      ImgProvider.testCardLemon,
+    ];
     return Container(
         color: Colors.white,
         child: Column(
@@ -44,26 +43,28 @@ class DecisionViewCardTest implements DecisionAbstractCard {
               Container(
                   color: const Color(0xFF00B272),
                   width: double.maxFinite,
-                  padding: EdgeInsets.all(style.size(16)),
+                  padding: EdgeInsets.all(style.width(16)),
                   child: Center(
                       child: Text(_testCardBarText + (cardnum + 1).toString(),
                           style: TextStyle(
                               color: Colors.white,
-                              fontFamily: style.textFont,
+                              fontFamily: TextProvider.familyNunitoSans,
+                              package: 'style',
                               fontWeight: FontWeight.bold,
                               fontSize: style.text(15))))),
               Expanded(
                   child: Center(
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Image.asset("res/images/${icons[cardnum]}.png",
-                    height: style.size(120), package: 'decision'),
+                SizedBox(child: icons[cardnum],
+                    height: style.size(120)),
                 Container(
                     margin: EdgeInsets.only(top: style.size(40)),
                     child: Text(
                       _test,
                       style: TextStyle(
                           color: const Color(0xFF00133F),
-                          fontFamily: style.bigTxtFontFamily,
+                          fontFamily: TextProvider.familyKoara,
+                          package: 'style',
                           fontSize: style.text(25),
                           fontWeight: FontWeight.bold),
                     )),
@@ -72,7 +73,8 @@ class DecisionViewCardTest implements DecisionAbstractCard {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: const Color(0xFF00133F),
-                      fontFamily: style.textFont,
+                      fontFamily: TextProvider.familyNunitoSans,
+                      package: 'style',
                       fontSize: style.text(_fontSizeText),
                       fontWeight: FontWeight.w600),
                 ),
@@ -82,7 +84,8 @@ class DecisionViewCardTest implements DecisionAbstractCard {
                         text: _rememberThat,
                         style: TextStyle(
                             color: const Color(0xFF00133F),
-                            fontFamily: style.textFont,
+                            fontFamily: TextProvider.familyNunitoSans,
+                            package: 'style',
                             fontSize: style.text(_fontSizeText),
                             fontWeight: FontWeight.w600),
                         children: [
@@ -90,7 +93,8 @@ class DecisionViewCardTest implements DecisionAbstractCard {
                             text: _unsubscribe,
                             style: TextStyle(
                               color: const Color(0xFF00133F),
-                              fontFamily: style.textFont,
+                              fontFamily: TextProvider.familyNunitoSans,
+                              package: 'style',
                               fontSize: style.text(_fontSizeText),
                             ),
                           ),
@@ -103,7 +107,7 @@ class DecisionViewCardTest implements DecisionAbstractCard {
   }
 
   Future<void> _testDone(context) async {
-    if (cardnum + 1 == icons.length) {
+    if (cardnum + 1 == 3) {
       var service = Provider.of<DecisionService>(context, listen: false);
       service.testDone();
     }

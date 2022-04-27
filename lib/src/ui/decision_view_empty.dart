@@ -4,6 +4,7 @@
  */
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tiki_style/tiki_style.dart';
 
 import '../decision_service.dart';
 
@@ -23,31 +24,33 @@ class DecisionViewEmpty extends StatelessWidget {
     DecisionService service = Provider.of<DecisionService>(context);
     return Container(
         width: double.maxFinite,
-        padding: EdgeInsets.only(top: service.style.size(100)),
+        padding: EdgeInsets.only(top: SizeProvider.instance.size(100)),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Image.asset(
-            'res/images/pineapple-floatie.png',
-            package: 'decision',
-            height: service.style.size(115),
-            fit: BoxFit.fitHeight,
-          ),
+            SizedBox(
+              height: SizeProvider.instance.size(115),
+              child: FittedBox(
+                child: ImgProvider.pineappleFloatie,
+                fit: BoxFit.fitHeight,
+          )),
           Padding(
-              padding: EdgeInsets.only(top: service.style.size(16)),
+              padding: EdgeInsets.only(top: SizeProvider.instance.size(16)),
               child: service.model.isPending
                   ? RichText(
                       text: TextSpan(
                           text: _justASec,
                           style: TextStyle(
-                              fontFamily: service.style.bigTxtFontFamily,
-                              fontSize: service.style.text(_fontSize),
+                              fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
+                              fontSize: SizeProvider.instance.text(_fontSize),
                               color: const Color(0xFF0036B5),
                               fontWeight: FontWeight.bold),
                           children: [
                           TextSpan(
                               text: _notNow,
                               style: TextStyle(
-                                  fontFamily: service.style.bigTxtFontFamily,
-                                  fontSize: service.style.text(_fontSize),
+                                  fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
+                                  fontSize: SizeProvider.instance.text(_fontSize),
                                   color: const Color(0xFF00133F),
                                   fontWeight: FontWeight.bold))
                         ]))
@@ -55,16 +58,18 @@ class DecisionViewEmpty extends StatelessWidget {
                       text: TextSpan(
                           text: _noMore,
                           style: TextStyle(
-                              fontFamily: service.style.bigTxtFontFamily,
-                              fontSize: service.style.text(_fontSize),
+                              fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
+                              fontSize: SizeProvider.instance.text(_fontSize),
                               color: const Color(0xFF0036B5),
                               fontWeight: FontWeight.bold),
                           children: [
                           TextSpan(
                               text: _party,
                               style: TextStyle(
-                                  fontFamily: service.style.bigTxtFontFamily,
-                                  fontSize: service.style.text(_fontSize),
+                                  fontFamily: TextProvider.familyNunitoSans,
+                  package: 'style',
+                                  fontSize: SizeProvider.instance.text(_fontSize),
                                   color: const Color(0xFF00133F),
                                   fontWeight: FontWeight.bold))
                         ])))
