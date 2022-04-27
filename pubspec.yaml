@@ -14,10 +14,7 @@ dependencies:
   provider: ^6.0.2
   logging: ^1.0.2
   url_launcher: ^6.0.20
-  tiki_kv:
-    git:
-      url: https://github.com/tiki/tiki_kv
-      ref: 0.0.2
+  tiki_kv: ^0.1.1
   tiki_style: ^0.0.9
 
 dev_dependencies:
