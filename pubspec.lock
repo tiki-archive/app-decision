@@ -234,19 +234,17 @@ packages:
   tiki_kv:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "0.0.2"
-      resolved-ref: e40ee68b075de081a7705a075f96324aef6bcefa
-      url: "https://github.com/tiki/tiki_kv"
-    source: git
-    version: "0.0.2"
+      name: tiki_kv
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   tiki_style:
     dependency: "direct main"
     description:
       name: tiki_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.8"
+    version: "0.0.9"
   typed_data:
     dependency: transitive
     description:
