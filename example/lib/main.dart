@@ -1,5 +1,5 @@
-import 'package:decision/decision.dart';
 import 'package:flutter/material.dart';
+import 'package:tiki_decision/tiki_decision.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +20,6 @@ class _MyAppState extends State<MyApp> {
             appBar: AppBar(
               title: const Text('Decision example app'),
             ),
-            body: Decision(isConnected: true).decisionWidget()));
+            body: TikiDecision(isConnected: true).decisionWidget()));
   }
 }
