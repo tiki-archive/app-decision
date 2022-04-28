@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiki_style/tiki_style.dart';
 
-
 class DecisionViewStack extends StatelessWidget {
   final List<Widget> children;
   final Widget noCardsPlaceholder;

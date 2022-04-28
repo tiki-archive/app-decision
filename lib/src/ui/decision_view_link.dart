@@ -5,8 +5,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiki_style/tiki_style.dart';
 
-
-
 class DecisionViewLink extends StatelessWidget {
   static const String _add = "Add an email account";
   static const String _choices = "to start making choices";
