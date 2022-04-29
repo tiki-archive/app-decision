@@ -1,3 +1,7 @@
+## 0.0.5
+
+* rename lib
+
 ## 0.0.4
 
 * style update

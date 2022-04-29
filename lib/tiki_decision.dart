@@ -6,10 +6,10 @@ import 'src/ui/decision_abstract_card.dart';
 
 export 'src/ui/decision_abstract_card.dart';
 
-class Decision {
+class TikiDecision {
   late final DecisionService _service;
 
-  Decision({
+  TikiDecision({
     TikiKv? tikiKv,
     bool isConnected = false,
   }) : _service = DecisionService(
@@ -17,7 +17,7 @@ class Decision {
           isConnected: isConnected,
         );
 
-  Future<Decision> init() async {
+  Future<TikiDecision> init() async {
     await _service.addTests();
     return this;
   }
