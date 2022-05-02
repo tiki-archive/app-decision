@@ -25,7 +25,7 @@ class ScreenService extends ChangeNotifier {
     controller = ScreenController(this);
   }
 
-  Future<void> addCards(List<dynamic> cards) async {
+  void addCards(List<dynamic> cards) {
     for (var card in cards) {
       if (!model.cards.contains(card)) {
         model.cards.add(card);
@@ -48,12 +48,12 @@ class ScreenService extends ChangeNotifier {
   }
 
   Future<void> addTests() async {
-    model.cards.addAll(_testCardService.get());
+    model.cards.addAll(await _testCardService.get());
     model.testCardsAdded = true;
     model.isPending = true;
   }
 
-  setLinked(bool isLinked) {
+  void setLinked(bool isLinked) {
     model.isLinked = isLinked;
     notifyListeners();
   }
