@@ -3,10 +3,10 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-import '../ui/decision_abstract_card.dart';
+import '../../tiki_decision_card.dart';
 
-class DecisionModel {
-  List<DecisionAbstractCard> cards = [];
+class ScreenModel {
+  List<TikiDecisionCard> cards = [];
   bool isLinked = false;
   bool isPending = false;
   bool isTestDone = false;

@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) TIKI Inc.
+ * MIT license. See LICENSE file in root directory.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tiki_style/tiki_style.dart';
 
-import '../decision_service.dart';
-import 'decision_abstract_card.dart';
+import '../../tiki_decision_card.dart';
+import 'test_card_service.dart';
 
-class DecisionViewCardTest implements DecisionAbstractCard {
+class TestCardModel implements TikiDecisionCard {
   static const double _fontSizeText = 12.5;
   static const String _test = "Test card\n";
   static const String _testHow =
@@ -18,7 +23,7 @@ class DecisionViewCardTest implements DecisionAbstractCard {
 
   final int cardnum;
 
-  DecisionViewCardTest(this.cardnum);
+  TestCardModel(this.cardnum);
 
   @override
   Future<void> callbackNo(BuildContext context) => _testDone(context);
@@ -55,8 +60,7 @@ class DecisionViewCardTest implements DecisionAbstractCard {
               Expanded(
                   child: Center(
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
-                SizedBox(child: icons[cardnum],
-                    height: style.size(120)),
+                SizedBox(child: icons[cardnum], height: style.size(120)),
                 Container(
                     margin: EdgeInsets.only(top: style.size(40)),
                     child: Text(
@@ -108,8 +112,9 @@ class DecisionViewCardTest implements DecisionAbstractCard {
 
   Future<void> _testDone(context) async {
     if (cardnum + 1 == 3) {
-      var service = Provider.of<DecisionService>(context, listen: false);
-      service.testDone();
+      Provider.of<TestCardService>(context, listen: false)
+          .controller
+          .done(context, cardnum);
     }
   }
 }

@@ -1,11 +1,16 @@
+/*
+ * Copyright (c) TIKI Inc.
+ * MIT license. See LICENSE file in root directory.
+ */
+
 import 'package:flutter/material.dart';
 
-import 'decision_service.dart';
+import 'screen_service.dart';
 
-class DecisionController {
-  final DecisionService service;
+class ScreenController {
+  final ScreenService service;
 
-  DecisionController(this.service);
+  ScreenController(this.service);
 
   void removeCard(
       {required BuildContext context,
