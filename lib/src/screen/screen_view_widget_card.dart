@@ -1,26 +1,30 @@
+/*
+ * Copyright (c) TIKI Inc.
+ * MIT license. See LICENSE file in root directory.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:tiki_style/tiki_style.dart';
 
-class DecisionViewCard extends StatefulWidget {
+class ScreenViewWidgetCard extends StatefulWidget {
   final Widget child;
   final Function onSwipeRight;
   final Function onSwipeLeft;
   final BoxConstraints constraints;
 
-  const DecisionViewCard(
-      {Key? key,
-      required this.child,
-      required this.onSwipeRight,
-      required this.onSwipeLeft,
-      required this.constraints,
-      })
-      : super(key: key);
+  const ScreenViewWidgetCard({
+    Key? key,
+    required this.child,
+    required this.onSwipeRight,
+    required this.onSwipeLeft,
+    required this.constraints,
+  }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _DecisionSdkCardViewState();
+  State<StatefulWidget> createState() => _ScreenViewWidgetCardState();
 }
 
-class _DecisionSdkCardViewState extends State<DecisionViewCard> {
+class _ScreenViewWidgetCardState extends State<ScreenViewWidgetCard> {
   double delta = 0;
   double top = 0;
   double lastDx = 0;
@@ -79,12 +83,12 @@ class _DecisionSdkCardViewState extends State<DecisionViewCard> {
                                         offset: Offset(-3, 4))
                                   ]
                                 : [],
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(SizeProvider.instance.size(15))),
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                SizeProvider.instance.size(15))),
                           ),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(SizeProvider.instance.size(15))),
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                SizeProvider.instance.size(15))),
                             child: widget.child,
                           )),
                       Positioned(
@@ -101,12 +105,12 @@ class _DecisionSdkCardViewState extends State<DecisionViewCard> {
                           right: -60,
                           top: 100,
                           child: Align(
-                            alignment: Alignment.topRight,
-                            child: Opacity(
-                                opacity: getOpacityNo(),
-                                child: SizedBox(
-                                    height: SizeProvider.instance.size(240),
-                                    child: ImgProvider.nopeLabel)))),
+                              alignment: Alignment.topRight,
+                              child: Opacity(
+                                  opacity: getOpacityNo(),
+                                  child: SizedBox(
+                                      height: SizeProvider.instance.size(240),
+                                      child: ImgProvider.nopeLabel)))),
                     ])))));
   }
 

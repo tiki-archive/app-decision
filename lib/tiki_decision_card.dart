@@ -2,9 +2,10 @@
  * Copyright (c) TIKI Inc.
  * MIT license. See LICENSE file in root directory.
  */
+
 import 'package:flutter/material.dart';
 
-abstract class DecisionAbstractCard {
+abstract class TikiDecisionCard {
   Future<void> callbackNo(BuildContext context);
 
   Future<void> callbackYes(BuildContext context);
