@@ -22,23 +22,20 @@ class ScreenViewLayout extends StatelessWidget {
         ? LayoutBuilder(
             builder: (context, constraints) => ScreenViewLayoutStack(
                 noCardsPlaceholder: const ScreenViewLayoutEmpty(),
-                children: service.model.cards
-                    .getRange(
-                        0,
-                        service.model.cards.length >= 3
-                            ? 3
-                            : service.model.cards.length)
-                    .map((card) => ScreenViewWidgetCard(
+                children: service
+                    .get(3)
+                    .entries
+                    .map((entry) => ScreenViewWidgetCard(
                         constraints: constraints,
                         onSwipeRight: () => service.controller.removeCard(
                             context: context,
-                            index: service.model.cards.indexOf(card),
-                            callback: card.callbackYes),
+                            id: entry.key,
+                            callback: entry.value.callbackYes),
                         onSwipeLeft: () => service.controller.removeCard(
                             context: context,
-                            index: service.model.cards.indexOf(card),
-                            callback: card.callbackNo),
-                        child: card.content(context)))
+                            id: entry.key,
+                            callback: entry.value.callbackNo),
+                        child: entry.value.content(context)))
                     .toList()))
         : const ScreenViewLayoutLink();
   }

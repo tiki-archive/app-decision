@@ -4,6 +4,7 @@
  */
 
 import 'package:tiki_kv/tiki_kv.dart';
+import 'package:uuid/uuid.dart';
 
 import 'test_card_controller.dart';
 import 'test_card_model.dart';
@@ -19,12 +20,13 @@ class TestCardService {
 
   Future<void> done() => _tikiKv.upsert(_testDoneKey, 'true');
 
-  Future<List<TestCardModel>> get() async {
+  Future<Map<String, TestCardModel>> get() async {
     bool isDone = (await _tikiKv.read(_testDoneKey)) == 'true' ? true : false;
     return isDone
-        ? List.empty()
-        : List<TestCardModel>.generate(3, (index) => TestCardModel(index))
-            .reversed
-            .toList();
+        ? {}
+        : Map.fromEntries(
+            List<TestCardModel>.generate(3, (index) => TestCardModel(index))
+                .reversed
+                .map((card) => MapEntry(const Uuid().v4(), card)));
   }
 }

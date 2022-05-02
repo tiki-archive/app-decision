@@ -6,7 +6,8 @@
 import '../../tiki_decision_card.dart';
 
 class ScreenModel {
-  List<TikiDecisionCard> cards = [];
+  List<String> stack = [];
+  Map<String, TikiDecisionCard> cards = {};
   bool isLinked = false;
   bool isPending = false;
   bool isTestDone = false;

@@ -5,6 +5,7 @@
 
 import 'package:flutter/cupertino.dart';
 
+import '../../tiki_decision_card.dart';
 import '../test_card/test_card_service.dart';
 import 'screen_controller.dart';
 import 'screen_model.dart';
@@ -25,19 +26,17 @@ class ScreenService extends ChangeNotifier {
     controller = ScreenController(this);
   }
 
-  void addCards(List<dynamic> cards) {
-    for (var card in cards) {
-      if (!model.cards.contains(card)) {
-        model.cards.add(card);
-      }
-    }
-    if (model.cards.isNotEmpty && model.cards.length <= 3) {
-      notifyListeners();
-    }
+  void upsert(Map<String, TikiDecisionCard> cards) {
+    model.cards.addAll(cards);
+    cards.removeWhere((id, card) => model.stack.contains(id));
+    model.stack.addAll(cards.keys);
   }
 
-  void removeCard(int index) {
-    model.cards.removeAt(index);
+  void removeCardAt(int index) => removeCard(model.stack.elementAt(index));
+
+  void removeCard(String id) {
+    model.cards.remove(id);
+    model.stack.remove(id);
     notifyListeners();
   }
 
@@ -48,7 +47,7 @@ class ScreenService extends ChangeNotifier {
   }
 
   Future<void> addTests() async {
-    model.cards.addAll(await _testCardService.get());
+    upsert(await _testCardService.get());
     model.testCardsAdded = true;
     model.isPending = true;
   }
@@ -56,5 +55,15 @@ class ScreenService extends ChangeNotifier {
   void setLinked(bool isLinked) {
     model.isLinked = isLinked;
     notifyListeners();
+  }
+
+  Map<String, TikiDecisionCard> get(int num) {
+    Iterable<String> ids = model.stack
+        .getRange(0, model.stack.length >= num ? num : model.stack.length);
+    Map<String, TikiDecisionCard> cards = {};
+    for (String id in ids) {
+      if (model.cards.containsKey(id)) cards[id] = model.cards[id]!;
+    }
+    return cards;
   }
 }

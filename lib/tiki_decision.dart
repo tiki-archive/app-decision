@@ -28,7 +28,8 @@ class TikiDecision {
 
   Widget get widget => _screenService.presenter.home();
 
-  void addCards(List<TikiDecisionCard> cards) => _screenService.addCards(cards);
+  void upsert(Map<String, TikiDecisionCard> cards) =>
+      _screenService.upsert(cards);
 
   void setLinked(bool isLinked) => _screenService.setLinked(isLinked);
 }

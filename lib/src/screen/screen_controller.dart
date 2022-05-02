@@ -14,9 +14,9 @@ class ScreenController {
 
   void removeCard(
       {required BuildContext context,
-      required int index,
+      required String id,
       Function(BuildContext context)? callback}) {
     if (callback != null) callback(context);
-    service.removeCard(index);
+    service.removeCard(id);
   }
 }
