@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:tiki_kv/tiki_kv.dart';
 
 import 'src/screen/screen_service.dart';
-import 'src/test_card/test_card_service.dart';
+import 'src/test/test_service.dart';
 import 'tiki_decision_card.dart';
 
 class TikiDecision {
@@ -17,7 +17,7 @@ class TikiDecision {
     required TikiKv tikiKv,
     bool isConnected = false,
   }) : _screenService = ScreenService(
-          TestCardService(tikiKv),
+          TestService(tikiKv),
           isConnected: isConnected,
         );
 

@@ -6,9 +6,9 @@
 import 'package:flutter/material.dart';
 
 abstract class TikiDecisionCard {
-  Future<void> callbackNo(BuildContext context);
+  Future<void> callbackNo();
 
-  Future<void> callbackYes(BuildContext context);
+  Future<void> callbackYes();
 
-  Widget content(BuildContext context);
+  Widget content();
 }

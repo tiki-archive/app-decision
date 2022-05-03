@@ -6,7 +6,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../tiki_decision_card.dart';
-import '../test_card/test_card_service.dart';
+import '../test/test_service.dart';
 import 'screen_controller.dart';
 import 'screen_model.dart';
 import 'screen_presenter.dart';
@@ -16,12 +16,9 @@ class ScreenService extends ChangeNotifier {
   late final ScreenPresenter presenter;
   late final ScreenController controller;
 
-  final TestCardService _testCardService;
+  final TestService testService;
 
-  ScreenService(
-    this._testCardService, {
-    bool isConnected = false,
-  }) {
+  ScreenService(this.testService, {bool isConnected = false}) {
     presenter = ScreenPresenter(this);
     controller = ScreenController(this);
   }
@@ -40,16 +37,10 @@ class ScreenService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> testDone() async {
-    model.isTestDone = true;
-    await _testCardService.done();
-    notifyListeners();
-  }
-
   Future<void> addTests() async {
-    upsert(await _testCardService.get());
-    model.testCardsAdded = true;
+    upsert(await testService.get());
     model.isPending = true;
+    notifyListeners();
   }
 
   void setLinked(bool isLinked) {

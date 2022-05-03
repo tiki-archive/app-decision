@@ -10,6 +10,4 @@ class ScreenModel {
   Map<String, TikiDecisionCard> cards = {};
   bool isLinked = false;
   bool isPending = false;
-  bool isTestDone = false;
-  bool testCardsAdded = false;
 }

@@ -3,8 +3,6 @@
  * MIT license. See LICENSE file in root directory.
  */
 
-import 'package:flutter/material.dart';
-
 import 'screen_service.dart';
 
 class ScreenController {
@@ -12,11 +10,8 @@ class ScreenController {
 
   ScreenController(this.service);
 
-  void removeCard(
-      {required BuildContext context,
-      required String id,
-      Function(BuildContext context)? callback}) {
-    if (callback != null) callback(context);
+  void removeCard({required String id, Function()? callback}) {
+    if (callback != null) callback();
     service.removeCard(id);
   }
 }

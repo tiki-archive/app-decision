@@ -4,13 +4,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tiki_style/tiki_style.dart';
 
-import '../../tiki_decision_card.dart';
-import 'test_card_service.dart';
-
-class TestCardModel implements TikiDecisionCard {
+class TestCardLayout extends StatelessWidget {
   static const double _fontSizeText = 12.5;
   static const String _test = "Test card\n";
   static const String _testHow =
@@ -21,18 +17,12 @@ class TestCardModel implements TikiDecisionCard {
       "you can only undo your action by\ngoing to the email list’s website.";
   static const String _testCardBarText = 'TEST CARD #';
 
-  final int cardnum;
+  final int cardNum;
 
-  TestCardModel(this.cardnum);
-
-  @override
-  Future<void> callbackNo(BuildContext context) => _testDone(context);
+  const TestCardLayout(this.cardNum, {Key? key}) : super(key: key);
 
   @override
-  Future<void> callbackYes(BuildContext context) => _testDone(context);
-
-  @override
-  Widget content(BuildContext context) {
+  Widget build(BuildContext context) {
     SizeProvider style = SizeProvider.instance;
     final icons = [
       ImgProvider.testCardWatermelon,
@@ -50,7 +40,7 @@ class TestCardModel implements TikiDecisionCard {
                   width: double.maxFinite,
                   padding: EdgeInsets.all(style.width(16)),
                   child: Center(
-                      child: Text(_testCardBarText + (cardnum + 1).toString(),
+                      child: Text(_testCardBarText + (cardNum + 1).toString(),
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: TextProvider.familyNunitoSans,
@@ -60,7 +50,7 @@ class TestCardModel implements TikiDecisionCard {
               Expanded(
                   child: Center(
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
-                SizedBox(child: icons[cardnum], height: style.size(120)),
+                SizedBox(child: icons[cardNum], height: style.size(120)),
                 Container(
                     margin: EdgeInsets.only(top: style.size(40)),
                     child: Text(
@@ -108,13 +98,5 @@ class TestCardModel implements TikiDecisionCard {
                         ])),
               ])))
             ]));
-  }
-
-  Future<void> _testDone(context) async {
-    if (cardnum + 1 == 3) {
-      Provider.of<TestCardService>(context, listen: false)
-          .controller
-          .done(context, cardnum);
-    }
   }
 }
