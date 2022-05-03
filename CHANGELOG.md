@@ -1,3 +1,8 @@
+## 0.0.6
+
+* refactor code base to be slices
+* fix bugs related to ingt. w/ tiki_spam_card
+
 ## 0.0.5
 
 * rename lib
