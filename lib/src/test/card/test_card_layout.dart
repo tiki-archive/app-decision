@@ -1,11 +1,12 @@
+/*
+ * Copyright (c) TIKI Inc.
+ * MIT license. See LICENSE file in root directory.
+ */
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:tiki_style/tiki_style.dart';
 
-import '../decision_service.dart';
-import 'decision_abstract_card.dart';
-
-class DecisionViewCardTest implements DecisionAbstractCard {
+class TestCardLayout extends StatelessWidget {
   static const double _fontSizeText = 12.5;
   static const String _test = "Test card\n";
   static const String _testHow =
@@ -16,18 +17,12 @@ class DecisionViewCardTest implements DecisionAbstractCard {
       "you can only undo your action by\ngoing to the email list’s website.";
   static const String _testCardBarText = 'TEST CARD #';
 
-  final int cardnum;
+  final int cardNum;
 
-  DecisionViewCardTest(this.cardnum);
-
-  @override
-  Future<void> callbackNo(BuildContext context) => _testDone(context);
+  const TestCardLayout(this.cardNum, {Key? key}) : super(key: key);
 
   @override
-  Future<void> callbackYes(BuildContext context) => _testDone(context);
-
-  @override
-  Widget content(BuildContext context) {
+  Widget build(BuildContext context) {
     SizeProvider style = SizeProvider.instance;
     final icons = [
       ImgProvider.testCardWatermelon,
@@ -45,7 +40,7 @@ class DecisionViewCardTest implements DecisionAbstractCard {
                   width: double.maxFinite,
                   padding: EdgeInsets.all(style.width(16)),
                   child: Center(
-                      child: Text(_testCardBarText + (cardnum + 1).toString(),
+                      child: Text(_testCardBarText + (cardNum + 1).toString(),
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: TextProvider.familyNunitoSans,
@@ -55,8 +50,7 @@ class DecisionViewCardTest implements DecisionAbstractCard {
               Expanded(
                   child: Center(
                       child: Column(mainAxisSize: MainAxisSize.min, children: [
-                SizedBox(child: icons[cardnum],
-                    height: style.size(120)),
+                SizedBox(child: icons[cardNum], height: style.size(120)),
                 Container(
                     margin: EdgeInsets.only(top: style.size(40)),
                     child: Text(
@@ -104,12 +98,5 @@ class DecisionViewCardTest implements DecisionAbstractCard {
                         ])),
               ])))
             ]));
-  }
-
-  Future<void> _testDone(context) async {
-    if (cardnum + 1 == 3) {
-      var service = Provider.of<DecisionService>(context, listen: false);
-      service.testDone();
-    }
   }
 }

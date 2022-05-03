@@ -1,25 +1,37 @@
+/*
+ * Copyright (c) TIKI Inc.
+ * MIT license. See LICENSE file in root directory.
+ */
+
 import 'package:flutter/material.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'package:tiki_decision/tiki_decision.dart';
+import 'package:tiki_kv/tiki_kv.dart';
+import 'package:tiki_style/tiki_style.dart';
+import 'package:uuid/uuid.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  Database database = await openDatabase('${Uuid().v4()}.db');
+  TikiKv tikiKv = TikiKv(database: database);
+  TikiDecision decision = TikiDecision(tikiKv: tikiKv, isConnected: true);
+
+  runApp(MaterialApp(
+    title: 'Decision Example',
+    theme: ThemeData(),
+    home: Scaffold(
+      body: Center(child: Widgety(decision)),
+    ),
+  ));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Widgety extends StatelessWidget {
+  final TikiDecision decision;
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+  Widgety(this.decision);
 
-class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text('Decision example app'),
-            ),
-            body: TikiDecision(isConnected: true).decisionWidget()));
+    TikiStyle style = TikiStyle.init(context);
+    return decision.widget;
   }
 }

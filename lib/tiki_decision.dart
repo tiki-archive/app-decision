@@ -1,31 +1,35 @@
+/*
+ * Copyright (c) TIKI Inc.
+ * MIT license. See LICENSE file in root directory.
+ */
+
 import 'package:flutter/material.dart';
 import 'package:tiki_kv/tiki_kv.dart';
 
-import 'src/decision_service.dart';
-import 'src/ui/decision_abstract_card.dart';
-
-export 'src/ui/decision_abstract_card.dart';
+import 'src/screen/screen_service.dart';
+import 'src/test/test_service.dart';
+import 'tiki_decision_card.dart';
 
 class TikiDecision {
-  late final DecisionService _service;
+  late final ScreenService _screenService;
 
   TikiDecision({
-    TikiKv? tikiKv,
+    required TikiKv tikiKv,
     bool isConnected = false,
-  }) : _service = DecisionService(
-          tikiKv: tikiKv,
+  }) : _screenService = ScreenService(
+          TestService(tikiKv),
           isConnected: isConnected,
         );
 
   Future<TikiDecision> init() async {
-    await _service.addTests();
+    await _screenService.addTests();
     return this;
   }
 
-  Widget decisionWidget({bool example = false}) => _service.presenter.home();
+  Widget get widget => _screenService.presenter.home();
 
-  void addCards(List<DecisionAbstractCard> cards) => _service.addCards(cards);
+  void upsert(Map<String, TikiDecisionCard> cards) =>
+      _screenService.upsert(cards);
 
-  void setLinked(bool isLinked) =>
-    _service.setLinked(isLinked);
+  void setLinked(bool isLinked) => _screenService.setLinked(isLinked);
 }

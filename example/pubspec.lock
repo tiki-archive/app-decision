@@ -365,6 +365,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
+  sqflite:
+    dependency: "direct overridden"
+    description:
+      path: sqflite
+      ref: fmdb_override
+      resolved-ref: b45da6460b235ad32a1b24653a7b2aa37515605a
+      url: "https://www.github.com/davidmartos96/sqflite_sqlcipher.git"
+    source: git
+    version: "2.0.0+3"
   sqflite_common:
     dependency: transitive
     description:
@@ -373,7 +382,7 @@ packages:
     source: hosted
     version: "2.2.1"
   sqflite_sqlcipher:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite_sqlcipher
       url: "https://pub.dartlang.org"
@@ -450,14 +459,14 @@ packages:
     source: path
     version: "0.0.5"
   tiki_kv:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: tiki_kv
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
   tiki_style:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: tiki_style
       url: "https://pub.dartlang.org"
@@ -526,6 +535,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  uuid:
+    dependency: "direct main"
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.6"
   vector_math:
     dependency: transitive
     description:
