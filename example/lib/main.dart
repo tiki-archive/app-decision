@@ -11,9 +11,11 @@ import 'package:tiki_style/tiki_style.dart';
 import 'package:uuid/uuid.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Database database = await openDatabase('${Uuid().v4()}.db');
-  TikiKv tikiKv = TikiKv(database: database);
-  TikiDecision decision = TikiDecision(tikiKv: tikiKv, isConnected: true);
+  TikiKv tikiKv = await TikiKv(database: database).init();
+  TikiDecision decision =
+      await TikiDecision(tikiKv: tikiKv, isConnected: true).init();
 
   runApp(MaterialApp(
     title: 'Decision Example',
