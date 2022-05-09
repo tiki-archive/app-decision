@@ -15,13 +15,13 @@ void main() async {
   Database database = await openDatabase('${Uuid().v4()}.db');
   TikiKv tikiKv = await TikiKv(database: database).init();
   TikiDecision decision =
-      await TikiDecision(tikiKv: tikiKv, isConnected: true).init();
+      await TikiDecision(tikiKv: tikiKv, isLinked: true).init();
 
   runApp(MaterialApp(
     title: 'Decision Example',
     theme: ThemeData(),
     home: Scaffold(
-      body: Center(child: Widgety(decision)),
+      body: Widgety(decision),
     ),
   ));
 }
