@@ -1,3 +1,7 @@
+## 0.0.9
+
+* display cards in correct order
+
 ## 0.0.8
 
 * fixed UI rendering bugs
