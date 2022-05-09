@@ -1,3 +1,8 @@
+## 0.0.10
+
+* hard typed callbacks
+* use async/await to enable option blocking
+
 ## 0.0.9
 
 * display cards in correct order
