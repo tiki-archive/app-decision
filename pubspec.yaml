@@ -1,6 +1,6 @@
 name: tiki_decision
 description: Decision sdk for TIKI
-version: 0.0.9
+version: 0.0.10
 homepage: https://github.com/tiki/decision
 repository: https://github.com/tiki/decision
 
