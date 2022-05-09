@@ -32,6 +32,8 @@ class ScreenViewLayout extends StatelessWidget {
                         onSwipeLeft: () => service.controller.removeCard(
                             id: entry.key, callback: entry.value.callbackNo),
                         child: entry.value.content()))
+                    .toList()
+                    .reversed
                     .toList()))
         : const ScreenViewLayoutLink();
   }
