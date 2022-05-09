@@ -26,56 +26,59 @@ class ScreenViewLayoutEmpty extends StatelessWidget {
     return Container(
         width: double.maxFinite,
         padding: EdgeInsets.only(top: SizeProvider.instance.size(100)),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          SizedBox(
-              height: SizeProvider.instance.size(115),
-              child: FittedBox(
-                child: ImgProvider.pineappleFloatie,
-                fit: BoxFit.fitHeight,
-              )),
-          Padding(
-              padding: EdgeInsets.only(top: SizeProvider.instance.size(16)),
-              child: service.model.isPending
-                  ? RichText(
-                      text: TextSpan(
-                          text: _justASec,
-                          style: TextStyle(
-                              fontFamily: TextProvider.familyNunitoSans,
-                              package: 'style',
-                              fontSize: SizeProvider.instance.text(_fontSize),
-                              color: const Color(0xFF0036B5),
-                              fontWeight: FontWeight.bold),
-                          children: [
-                          TextSpan(
-                              text: _notNow,
+        child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(
+                image: ImgProvider.pineappleFloatie.image,
+                height: SizeProvider.instance.size(120),
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: SizeProvider.instance.size(16)),
+                  child: service.model.isPending
+                      ? RichText(
+                          text: TextSpan(
+                              text: _justASec,
                               style: TextStyle(
                                   fontFamily: TextProvider.familyNunitoSans,
-                                  package: 'style',
+                                  package: TextProvider.package,
                                   fontSize:
                                       SizeProvider.instance.text(_fontSize),
-                                  color: const Color(0xFF00133F),
-                                  fontWeight: FontWeight.bold))
-                        ]))
-                  : RichText(
-                      text: TextSpan(
-                          text: _noMore,
-                          style: TextStyle(
-                              fontFamily: TextProvider.familyNunitoSans,
-                              package: 'style',
-                              fontSize: SizeProvider.instance.text(_fontSize),
-                              color: const Color(0xFF0036B5),
-                              fontWeight: FontWeight.bold),
-                          children: [
-                          TextSpan(
-                              text: _party,
+                                  color: const Color(0xFF0036B5),
+                                  fontWeight: FontWeight.bold),
+                              children: [
+                              TextSpan(
+                                  text: _notNow,
+                                  style: TextStyle(
+                                      fontFamily: TextProvider.familyNunitoSans,
+                                      package: TextProvider.package,
+                                      fontSize:
+                                          SizeProvider.instance.text(_fontSize),
+                                      color: const Color(0xFF00133F),
+                                      fontWeight: FontWeight.bold))
+                            ]))
+                      : RichText(
+                          text: TextSpan(
+                              text: _noMore,
                               style: TextStyle(
                                   fontFamily: TextProvider.familyNunitoSans,
-                                  package: 'style',
+                                  package: TextProvider.package,
                                   fontSize:
                                       SizeProvider.instance.text(_fontSize),
-                                  color: const Color(0xFF00133F),
-                                  fontWeight: FontWeight.bold))
-                        ])))
-        ]));
+                                  color: ColorProvider.blue,
+                                  fontWeight: FontWeight.bold),
+                              children: [
+                              TextSpan(
+                                  text: _party,
+                                  style: TextStyle(
+                                      fontFamily: TextProvider.familyNunitoSans,
+                                      package: TextProvider.package,
+                                      fontSize:
+                                          SizeProvider.instance.text(_fontSize),
+                                      color: ColorProvider.tikiBlue,
+                                      fontWeight: FontWeight.bold))
+                            ])))
+            ]));
   }
 }

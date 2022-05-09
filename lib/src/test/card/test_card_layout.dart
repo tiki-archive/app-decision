@@ -25,9 +25,9 @@ class TestCardLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeProvider style = SizeProvider.instance;
     final icons = [
-      ImgProvider.testCardWatermelon,
-      ImgProvider.testCardPineapple,
-      ImgProvider.testCardLemon,
+      ImgProvider.watermelonHappy,
+      ImgProvider.pineappleHappyAlt,
+      ImgProvider.lemon,
     ];
     return Container(
         color: Colors.white,
@@ -36,7 +36,7 @@ class TestCardLayout extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Container(
-                  color: const Color(0xFF00B272),
+                  color: ColorProvider.green,
                   width: double.maxFinite,
                   padding: EdgeInsets.all(style.width(16)),
                   child: Center(
@@ -44,7 +44,7 @@ class TestCardLayout extends StatelessWidget {
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: TextProvider.familyNunitoSans,
-                              package: 'style',
+                              package: TextProvider.package,
                               fontWeight: FontWeight.bold,
                               fontSize: style.text(15))))),
               Expanded(
@@ -56,9 +56,9 @@ class TestCardLayout extends StatelessWidget {
                     child: Text(
                       _test,
                       style: TextStyle(
-                          color: const Color(0xFF00133F),
+                          color: ColorProvider.tikiBlue,
                           fontFamily: TextProvider.familyKoara,
-                          package: 'style',
+                          package: TextProvider.package,
                           fontSize: style.text(25),
                           fontWeight: FontWeight.bold),
                     )),
@@ -66,9 +66,9 @@ class TestCardLayout extends StatelessWidget {
                   _testHow,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: const Color(0xFF00133F),
+                      color: ColorProvider.tikiBlue,
                       fontFamily: TextProvider.familyNunitoSans,
-                      package: 'style',
+                      package: TextProvider.package,
                       fontSize: style.text(_fontSizeText),
                       fontWeight: FontWeight.w600),
                 ),
@@ -77,24 +77,24 @@ class TestCardLayout extends StatelessWidget {
                     text: TextSpan(
                         text: _rememberThat,
                         style: TextStyle(
-                            color: const Color(0xFF00133F),
+                            color: ColorProvider.tikiBlue,
                             fontFamily: TextProvider.familyNunitoSans,
-                            package: 'style',
+                            package: TextProvider.package,
                             fontSize: style.text(_fontSizeText),
                             fontWeight: FontWeight.w600),
                         children: [
                           TextSpan(
                             text: _unsubscribe,
                             style: TextStyle(
-                              color: const Color(0xFF00133F),
+                              color: ColorProvider.tikiBlue,
                               fontFamily: TextProvider.familyNunitoSans,
-                              package: 'style',
+                              package: TextProvider.package,
                               fontSize: style.text(_fontSizeText),
                             ),
                           ),
                           const TextSpan(
                               text: _undo,
-                              style: TextStyle(color: Color(0xFFFF521C))),
+                              style: TextStyle(color: ColorProvider.orange)),
                         ])),
               ])))
             ]));

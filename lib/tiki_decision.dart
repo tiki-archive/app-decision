@@ -15,10 +15,10 @@ class TikiDecision {
 
   TikiDecision({
     required TikiKv tikiKv,
-    bool isConnected = false,
+    bool isLinked = false,
   }) : _screenService = ScreenService(
           TestService(tikiKv),
-          isConnected: isConnected,
+          isLinked: isLinked,
         );
 
   Future<TikiDecision> init() async {

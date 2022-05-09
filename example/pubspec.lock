@@ -457,7 +457,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.6"
+    version: "0.0.7"
   tiki_kv:
     dependency: "direct main"
     description:
@@ -471,7 +471,7 @@ packages:
       name: tiki_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.14"
+    version: "0.0.17"
   typed_data:
     dependency: transitive
     description:

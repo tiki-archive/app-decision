@@ -8,6 +8,8 @@ import '../../tiki_decision_card.dart';
 class ScreenModel {
   List<String> stack = [];
   Map<String, TikiDecisionCard> cards = {};
-  bool isLinked = false;
-  bool isPending = false;
+  bool isLinked;
+  bool isPending;
+
+  ScreenModel({this.isLinked = false, this.isPending = false});
 }

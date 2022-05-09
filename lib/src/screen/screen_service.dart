@@ -12,15 +12,16 @@ import 'screen_model.dart';
 import 'screen_presenter.dart';
 
 class ScreenService extends ChangeNotifier {
-  final ScreenModel model = ScreenModel();
+  late final ScreenModel model;
   late final ScreenPresenter presenter;
   late final ScreenController controller;
 
   final TestService testService;
 
-  ScreenService(this.testService, {bool isConnected = false}) {
+  ScreenService(this.testService, {bool isLinked = false}) {
     presenter = ScreenPresenter(this);
     controller = ScreenController(this);
+    model = ScreenModel(isLinked: isLinked);
   }
 
   void upsert(Map<String, TikiDecisionCard> cards) {

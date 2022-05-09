@@ -25,7 +25,7 @@ class ScreenViewLayoutLink extends StatelessWidget {
           child: Text(_add,
               style: TextStyle(
                   fontFamily: TextProvider.familyNunitoSans,
-                  package: 'style',
+                  package: TextProvider.package,
                   fontSize: SizeProvider.instance.text(15),
                   color: ColorProvider.orange,
                   fontWeight: FontWeight.bold))),
@@ -34,7 +34,7 @@ class ScreenViewLayoutLink extends StatelessWidget {
           child: Text(_choices,
               style: TextStyle(
                   fontFamily: TextProvider.familyNunitoSans,
-                  package: 'style',
+                  package: TextProvider.package,
                   fontSize: SizeProvider.instance.text(15),
                   color: ColorProvider.orange,
                   fontWeight: FontWeight.bold)))
