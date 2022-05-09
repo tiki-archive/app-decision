@@ -10,8 +10,9 @@ class ScreenController {
 
   ScreenController(this.service);
 
-  void removeCard({required String id, Function()? callback}) {
-    if (callback != null) callback();
+  Future<void> removeCard(
+      {required String id, Future<void> Function()? callback}) async {
+    if (callback != null) await callback();
     service.removeCard(id);
   }
 }

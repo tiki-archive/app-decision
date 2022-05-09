@@ -8,8 +8,8 @@ import 'package:tiki_style/tiki_style.dart';
 
 class ScreenViewWidgetCard extends StatefulWidget {
   final Widget child;
-  final Function onSwipeRight;
-  final Function onSwipeLeft;
+  final Future<void> Function() onSwipeRight;
+  final Future<void> Function() onSwipeLeft;
   final BoxConstraints constraints;
 
   const ScreenViewWidgetCard({
@@ -33,7 +33,7 @@ class _ScreenViewWidgetCardState extends State<ScreenViewWidgetCard> {
       ? 45
       : -delta / SizeProvider.instance.size(375);
 
-  double getopacityYes() {
+  double getOpacityYes() {
     if (delta < 0) {
       return 0;
     }
@@ -97,7 +97,7 @@ class _ScreenViewWidgetCardState extends State<ScreenViewWidgetCard> {
                           child: Align(
                               alignment: Alignment.topLeft,
                               child: Opacity(
-                                  opacity: getopacityYes(),
+                                  opacity: getOpacityYes(),
                                   child: SizedBox(
                                       height: SizeProvider.instance.size(240),
                                       child: ImgProvider.yesLabel)))),
@@ -121,11 +121,11 @@ class _ScreenViewWidgetCardState extends State<ScreenViewWidgetCard> {
     });
   }
 
-  void onDragEnd(DragEndDetails details) {
+  Future<void> onDragEnd(DragEndDetails details) async {
     if (delta > 100) {
-      widget.onSwipeRight();
+      await widget.onSwipeRight();
     } else if (delta < -100) {
-      widget.onSwipeLeft();
+      await widget.onSwipeLeft();
     }
     setState(() {
       delta = 0;
