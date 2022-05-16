@@ -58,4 +58,10 @@ class ScreenService extends ChangeNotifier {
     }
     return cards;
   }
+
+  void clear() {
+    model.stack = [];
+    model.cards = {};
+    notifyListeners();
+  }
 }

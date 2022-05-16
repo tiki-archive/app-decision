@@ -31,5 +31,7 @@ class TikiDecision {
   void upsert(Map<String, TikiDecisionCard> cards) =>
       _screenService.upsert(cards);
 
+  void clear() => _screenService.clear();
+
   void setLinked(bool isLinked) => _screenService.setLinked(isLinked);
 }
