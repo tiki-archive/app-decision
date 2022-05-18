@@ -1,3 +1,7 @@
+## 0.0.11
+
+* method to clear all cards
+
 ## 0.0.10
 
 * hard typed callbacks
