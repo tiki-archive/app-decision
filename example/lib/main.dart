@@ -3,20 +3,19 @@
  * MIT license. See LICENSE file in root directory.
  */
 
+import 'package:example/widgety.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'package:tiki_decision/tiki_decision.dart';
 import 'package:tiki_kv/tiki_kv.dart';
-import 'package:tiki_style/tiki_style.dart';
 import 'package:uuid/uuid.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Database database = await openDatabase('${Uuid().v4()}.db');
+  Database database = await openDatabase('${const Uuid().v4()}.db');
   TikiKv tikiKv = await TikiKv(database: database).init();
   TikiDecision decision =
-      await TikiDecision(tikiKv: tikiKv, isLinked: true).init();
-
+      await TikiDecision(tikiKv: tikiKv, isLinked: false).init();
   runApp(MaterialApp(
     title: 'Decision Example',
     theme: ThemeData(),
@@ -24,16 +23,4 @@ void main() async {
       body: Widgety(decision),
     ),
   ));
-}
-
-class Widgety extends StatelessWidget {
-  final TikiDecision decision;
-
-  Widgety(this.decision);
-
-  @override
-  Widget build(BuildContext context) {
-    TikiStyle style = TikiStyle.init(context);
-    return decision.widget;
-  }
 }
