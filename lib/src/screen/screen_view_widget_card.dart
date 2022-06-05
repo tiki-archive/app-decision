@@ -100,7 +100,7 @@ class _ScreenViewWidgetCardState extends State<ScreenViewWidgetCard> {
                                   opacity: getOpacityYes(),
                                   child: SizedBox(
                                       height: SizeProvider.instance.size(240),
-                                      child: ImgProvider.yesLabel)))),
+                                      child: ImgProvider.choiceKeepThem)))),
                       Positioned(
                           right: -60,
                           top: 100,
@@ -110,7 +110,7 @@ class _ScreenViewWidgetCardState extends State<ScreenViewWidgetCard> {
                                   opacity: getOpacityNo(),
                                   child: SizedBox(
                                       height: SizeProvider.instance.size(240),
-                                      child: ImgProvider.nopeLabel)))),
+                                      child: ImgProvider.choiceStopThem)))),
                     ])))));
   }
 

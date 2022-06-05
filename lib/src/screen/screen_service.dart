@@ -18,10 +18,17 @@ class ScreenService extends ChangeNotifier {
 
   final TestService testService;
 
-  ScreenService(this.testService, {bool isLinked = false}) {
+  ScreenService(this.testService, {
+    bool? isLinked,
+    int? indexedEmails,
+    int? fetchedEmails}) {
     presenter = ScreenPresenter(this);
     controller = ScreenController(this);
-    model = ScreenModel(isLinked: isLinked);
+    model = ScreenModel(
+        isLinked: isLinked ?? false,
+        isPending: false,
+        indexedEmails: indexedEmails ?? 0,
+        fetchedEmails: fetchedEmails ?? 0);
   }
 
   void upsert(Map<String, TikiDecisionCard> cards) {
@@ -48,6 +55,10 @@ class ScreenService extends ChangeNotifier {
     model.isLinked = isLinked;
     notifyListeners();
   }
+
+  void addIndexedEmails(int count) => model.indexedEmails += count;
+
+  void addFetchedEmails(int count) => model.fetchedEmails += count;
 
   Map<String, TikiDecisionCard> get(int num) {
     Iterable<String> ids = model.stack

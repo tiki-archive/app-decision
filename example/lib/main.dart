@@ -12,10 +12,10 @@ import 'package:uuid/uuid.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Database database = await openDatabase('${Uuid().v4()}.db');
+  Database database = await openDatabase('${const Uuid().v4()}.db');
   TikiKv tikiKv = await TikiKv(database: database).init();
   TikiDecision decision =
-      await TikiDecision(tikiKv: tikiKv, isLinked: true).init();
+      await TikiDecision(tikiKv: tikiKv, isLinked: false).init();
 
   runApp(MaterialApp(
     title: 'Decision Example',
@@ -29,11 +29,11 @@ void main() async {
 class Widgety extends StatelessWidget {
   final TikiDecision decision;
 
-  Widgety(this.decision);
+  const Widgety(this.decision, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TikiStyle style = TikiStyle.init(context);
+    TikiStyle.init(context);
     return decision.widget;
   }
 }

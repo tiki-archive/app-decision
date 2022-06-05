@@ -24,20 +24,22 @@ class ScreenViewLayoutLink extends StatelessWidget {
           padding: EdgeInsets.only(top: SizeProvider.instance.size(10)),
           child: Text(_add,
               style: TextStyle(
-                  fontFamily: TextProvider.familyNunitoSans,
+                  fontFamily: TextProvider.familyKoara,
                   package: TextProvider.package,
-                  fontSize: SizeProvider.instance.text(15),
+                  height: 1,
+                  fontSize: SizeProvider.instance.text(20),
                   color: ColorProvider.orange,
-                  fontWeight: FontWeight.bold))),
+                  fontWeight: FontWeight.w800))),
       Padding(
           padding: EdgeInsets.only(top: SizeProvider.instance.size(3)),
           child: Text(_choices,
               style: TextStyle(
-                  fontFamily: TextProvider.familyNunitoSans,
+                  fontFamily: TextProvider.familyKoara,
                   package: TextProvider.package,
-                  fontSize: SizeProvider.instance.text(15),
-                  color: ColorProvider.orange,
-                  fontWeight: FontWeight.bold)))
+                  height: 1,
+                  fontSize: SizeProvider.instance.text(20),
+                  color: ColorProvider.tikiBlue,
+                  fontWeight: FontWeight.w800)))
     ]));
   }
 }
