@@ -56,9 +56,19 @@ class ScreenService extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addIndexedEmails(int count) => model.indexedEmails += count;
+  void addIndexedEmails(int count) {
+    model.indexedEmails += count;
+    notifyListeners();
+  }
 
-  void addFetchedEmails(int count) => model.fetchedEmails += count;
+  void addFetchedEmails(int count) {
+    if(model.fetchedEmails + count > model.indexedEmails) {
+      model.fetchedEmails = model.indexedEmails;
+    }else{
+      model.fetchedEmails += count;
+    }
+    notifyListeners();
+  }
 
   Map<String, TikiDecisionCard> get(int num) {
     Iterable<String> ids = model.stack
@@ -73,6 +83,13 @@ class ScreenService extends ChangeNotifier {
   void clear() {
     model.stack = [];
     model.cards = {};
+    model.indexedEmails = 0;
+    model.fetchedEmails = 0;
+    notifyListeners();
+  }
+
+  setPending(bool isPending) {
+    model.isPending = isPending;
     notifyListeners();
   }
 }

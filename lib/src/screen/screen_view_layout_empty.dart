@@ -16,7 +16,7 @@ class ScreenViewLayoutEmpty extends StatelessWidget {
       "we’re working on\ngetting your data in this space";
   static const String _justASec = "Just a sec, ";
 
-  static const double _fontSize = 15;
+  static const double _fontSize = 20;
 
   const ScreenViewLayoutEmpty({Key? key}) : super(key: key);
 
@@ -38,25 +38,37 @@ class ScreenViewLayoutEmpty extends StatelessWidget {
                   padding: EdgeInsets.only(top: SizeProvider.instance.size(16)),
                   child: service.model.isPending
                       ? RichText(
+                          textAlign: TextAlign.center,
                           text: TextSpan(
                               text: _justASec,
                               style: TextStyle(
-                                  fontFamily: TextProvider.familyNunitoSans,
+                                  fontFamily: TextProvider.familyKoara,
                                   package: TextProvider.package,
                                   fontSize:
                                       SizeProvider.instance.text(_fontSize),
-                                  color: const Color(0xFF0036B5),
+                                  color: ColorProvider.blue,
                                   fontWeight: FontWeight.bold),
                               children: [
                               TextSpan(
                                   text: _notNow,
                                   style: TextStyle(
-                                      fontFamily: TextProvider.familyNunitoSans,
+                                      fontFamily: TextProvider.familyKoara,
                                       package: TextProvider.package,
+                                      height: 1.2,
                                       fontSize:
                                           SizeProvider.instance.text(_fontSize),
-                                      color: const Color(0xFF00133F),
-                                      fontWeight: FontWeight.bold))
+                                      color: ColorProvider.tikiBlue,
+                                      fontWeight: FontWeight.bold)),
+                                TextSpan(
+                                    text: '\nFetched ${service.model.fetchedEmails} of ${service.model.indexedEmails} indexed Emails',
+                                    style: TextStyle(
+                                      fontFamily: TextProvider.familyNunitoSans,
+                                      package: TextProvider.package,
+                                      height: 1.2,
+                                      fontSize:
+                                      SizeProvider.instance.text(12),
+                                      color: ColorProvider.tikiBlue,
+                                      fontWeight: FontWeight.normal)),
                             ]))
                       : RichText(
                           text: TextSpan(
@@ -78,7 +90,7 @@ class ScreenViewLayoutEmpty extends StatelessWidget {
                                           SizeProvider.instance.text(_fontSize),
                                       color: ColorProvider.tikiBlue,
                                       fontWeight: FontWeight.bold))
-                            ])))
+                            ]))),
             ]));
   }
 }
