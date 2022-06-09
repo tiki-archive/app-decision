@@ -6,6 +6,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../tiki_decision_card.dart';
+import '../overlay/overlay_service.dart';
 import '../test/test_service.dart';
 import 'screen_controller.dart';
 import 'screen_model.dart';
@@ -15,6 +16,7 @@ class ScreenService extends ChangeNotifier {
   late final ScreenModel model;
   late final ScreenPresenter presenter;
   late final ScreenController controller;
+  late final OverlayService overlay;
 
   final TestService testService;
 
@@ -24,6 +26,7 @@ class ScreenService extends ChangeNotifier {
     int? fetchedEmails}) {
     presenter = ScreenPresenter(this);
     controller = ScreenController(this);
+    overlay = OverlayService();
     model = ScreenModel(
         isLinked: isLinked ?? false,
         isPending: false,
@@ -46,8 +49,11 @@ class ScreenService extends ChangeNotifier {
   }
 
   Future<void> addTests() async {
-    upsert(await testService.get());
-    model.isPending = true;
+    if(!(await testService.isDone())) {
+      upsert(await testService.get());
+      overlay.setInstructions();
+      model.isPending = true;
+    }
     notifyListeners();
   }
 

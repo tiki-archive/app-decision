@@ -16,6 +16,7 @@ class TikiDecision {
   TikiDecision({
     required TikiKv tikiKv,
     bool isLinked = false,
+
   }) : _screenService = ScreenService(
           TestService(tikiKv),
           isLinked: isLinked,
@@ -28,10 +29,13 @@ class TikiDecision {
 
   Widget get widget => _screenService.presenter.home();
 
+  Widget get overlay => _screenService.presenter.overlay();
+
   void upsert(Map<String, TikiDecisionCard> cards) =>
       _screenService.upsert(cards);
 
   void clear() => _screenService.clear();
+
 
   void setLinked(bool isLinked) => _screenService.setLinked(isLinked);
   void addIndexedEmails(int count) => _screenService.addIndexedEmails(count);
