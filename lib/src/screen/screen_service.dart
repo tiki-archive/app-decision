@@ -6,6 +6,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../tiki_decision_card.dart';
+import '../overlay/overlay_service.dart';
 import '../test/test_service.dart';
 import 'screen_controller.dart';
 import 'screen_model.dart';
@@ -15,13 +16,22 @@ class ScreenService extends ChangeNotifier {
   late final ScreenModel model;
   late final ScreenPresenter presenter;
   late final ScreenController controller;
+  late final OverlayService overlay;
 
   final TestService testService;
 
-  ScreenService(this.testService, {bool isLinked = false}) {
+  ScreenService(this.testService, {
+    bool? isLinked,
+    int? indexedEmails,
+    int? fetchedEmails}) {
     presenter = ScreenPresenter(this);
     controller = ScreenController(this);
-    model = ScreenModel(isLinked: isLinked);
+    overlay = OverlayService();
+    model = ScreenModel(
+        isLinked: isLinked ?? false,
+        isPending: false,
+        indexedEmails: indexedEmails ?? 0,
+        fetchedEmails: fetchedEmails ?? 0);
   }
 
   void upsert(Map<String, TikiDecisionCard> cards) {
@@ -39,13 +49,30 @@ class ScreenService extends ChangeNotifier {
   }
 
   Future<void> addTests() async {
-    upsert(await testService.get());
-    model.isPending = true;
+    if(!(await testService.isDone())) {
+      upsert(await testService.get());
+      overlay.setInstructions();
+      model.isPending = true;
+    }
     notifyListeners();
   }
 
   void setLinked(bool isLinked) {
     model.isLinked = isLinked;
+    notifyListeners();
+  }
+
+  void addIndexedEmails(int count) {
+    model.indexedEmails += count;
+    notifyListeners();
+  }
+
+  void addFetchedEmails(int count) {
+    if(model.fetchedEmails + count > model.indexedEmails) {
+      model.fetchedEmails = model.indexedEmails;
+    }else{
+      model.fetchedEmails += count;
+    }
     notifyListeners();
   }
 
@@ -62,6 +89,13 @@ class ScreenService extends ChangeNotifier {
   void clear() {
     model.stack = [];
     model.cards = {};
+    model.indexedEmails = 0;
+    model.fetchedEmails = 0;
+    notifyListeners();
+  }
+
+  setPending(bool isPending) {
+    model.isPending = isPending;
     notifyListeners();
   }
 }

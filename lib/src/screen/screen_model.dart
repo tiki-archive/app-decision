@@ -10,6 +10,13 @@ class ScreenModel {
   Map<String, TikiDecisionCard> cards = {};
   bool isLinked;
   bool isPending;
+  int indexedEmails;
+  int fetchedEmails;
 
-  ScreenModel({this.isLinked = false, this.isPending = false});
+  ScreenModel({
+    this.isLinked = false,
+    this.isPending = false,
+    this.indexedEmails = 0,
+    this.fetchedEmails = 0
+  });
 }

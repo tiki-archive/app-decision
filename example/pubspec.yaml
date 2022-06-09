@@ -12,7 +12,7 @@ dependencies:
   tiki_kv: ^0.1.0
   sqflite_sqlcipher: ^2.1.0
   uuid: ^3.0.5
-  tiki_style: ^0.0.17
+  tiki_style: ^0.0.19
   tiki_decision:
     path: ../
 
