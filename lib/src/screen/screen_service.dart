@@ -98,4 +98,15 @@ class ScreenService extends ChangeNotifier {
     model.isPending = isPending;
     notifyListeners();
   }
+
+  clearWhere(bool Function({String? id, TikiDecisionCard? card}) where) {
+    List<String> removeKeys = [];
+    model.cards.forEach((key, value) {
+      if(where(id: key, card:value)) removeKeys.add(key);
+    });
+    for (var key in removeKeys) {
+      model.cards.remove(key);
+    }
+    notifyListeners();
+  }
 }
