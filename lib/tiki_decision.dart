@@ -3,6 +3,7 @@
  * MIT license. See LICENSE file in root directory.
  */
 
+import 'package:amplitude_flutter/amplitude.dart';
 import 'package:flutter/material.dart';
 import 'package:tiki_kv/tiki_kv.dart';
 
@@ -16,10 +17,11 @@ class TikiDecision {
   TikiDecision({
     required TikiKv tikiKv,
     bool isLinked = false,
-
+    Amplitude? amplitude
   }) : _screenService = ScreenService(
           TestService(tikiKv),
           isLinked: isLinked,
+          amplitude: amplitude
         );
 
   Future<TikiDecision> init() async {
@@ -34,8 +36,8 @@ class TikiDecision {
   void upsert(Map<String, TikiDecisionCard> cards) =>
       _screenService.upsert(cards);
 
-  void clear() => _screenService.clear();
-
+  void clearWhere(bool Function({String? id, TikiDecisionCard? card}) where) =>
+      _screenService.clearWhere(where);
 
   void setLinked(bool isLinked) => _screenService.setLinked(isLinked);
   void addIndexedEmails(int count) => _screenService.addIndexedEmails(count);
