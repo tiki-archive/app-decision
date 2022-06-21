@@ -1,3 +1,9 @@
+## 0.0.12
+
+* prepare for multi accounts
+* fix overlays
+* add completed message
+
 ## 0.0.11
 
 * method to clear all cards

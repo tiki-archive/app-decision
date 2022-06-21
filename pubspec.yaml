@@ -1,6 +1,6 @@
 name: tiki_decision
 description: Decision sdk for TIKI
-version: 0.0.11
+version: 0.0.12
 homepage: https://github.com/tiki/decision
 repository: https://github.com/tiki/decision
 
@@ -16,7 +16,7 @@ dependencies:
   logging: ^1.0.2
   url_launcher: ^6.1.3
   tiki_kv: ^0.1.1
-  tiki_style: ^0.0.19
+  tiki_style: ^0.0.20
   uuid: ^3.0.6
 
 dev_dependencies:
