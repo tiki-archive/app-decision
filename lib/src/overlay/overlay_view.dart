@@ -24,7 +24,7 @@ class OverlayView extends StatelessWidget{
       case 1:
         return const OverlayViewInstructions();
       case 2:
-        return OverlayViewCompleted();
+        return const OverlayViewCompleted();
       default:
         return Container();
     }

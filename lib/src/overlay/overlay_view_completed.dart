@@ -7,8 +7,7 @@ import 'overlay_service.dart';
 
 class OverlayViewCompleted extends StatelessWidget{
 
-  OverlayViewCompleted();
-
+  const OverlayViewCompleted({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
