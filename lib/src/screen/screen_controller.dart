@@ -10,9 +10,25 @@ class ScreenController {
 
   ScreenController(this.service);
 
-  Future<void> removeCard(
+  Future<void> swipeYes(
       {required String id, Future<void> Function()? callback}) async {
-    if (callback != null) await callback();
+    if(service.amplitude != null && await service.testService.isDone()) {
+      service.amplitude!.logEvent("SWIPE_YES");
+    }
+    _swipeToRemove(id: id, callback: callback);
+  }
+
+  Future<void> swipeNo(
+      {required String id, Future<void> Function()? callback}) async {
+    if(service.amplitude != null && await service.testService.isDone()) {
+      service.amplitude!.logEvent("SWIPE_NO");
+    }
+    _swipeToRemove(id: id, callback: callback);
+  }
+
+  Future<void> _swipeToRemove(
+      {required String id, Future<void> Function()? callback}) async {
+    if (callback != null) callback();
     service.removeCard(id);
   }
 }

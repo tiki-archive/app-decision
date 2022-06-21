@@ -27,9 +27,9 @@ class ScreenViewLayout extends StatelessWidget {
                     .entries
                     .map((entry) => ScreenViewWidgetCard(
                         constraints: constraints,
-                        onSwipeRight: () => service.controller.removeCard(
+                        onSwipeRight: () => service.controller.swipeYes(
                             id: entry.key, callback: entry.value.callbackYes),
-                        onSwipeLeft: () => service.controller.removeCard(
+                        onSwipeLeft: () => service.controller.swipeNo(
                             id: entry.key, callback: entry.value.callbackNo),
                         child: entry.value.content()))
                     .toList()
