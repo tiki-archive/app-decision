@@ -3,6 +3,7 @@
  * MIT license. See LICENSE file in root directory.
  */
 
+import 'package:amplitude_flutter/amplitude.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../tiki_decision_card.dart';
@@ -20,10 +21,13 @@ class ScreenService extends ChangeNotifier {
 
   final TestService testService;
 
+  Amplitude? amplitude;
+
   ScreenService(this.testService, {
     bool? isLinked,
     int? indexedEmails,
-    int? fetchedEmails}) {
+    int? fetchedEmails,
+    this.amplitude}) {
     presenter = ScreenPresenter(this);
     controller = ScreenController(this);
     overlay = OverlayService();
@@ -94,12 +98,12 @@ class ScreenService extends ChangeNotifier {
     notifyListeners();
   }
 
-  setPending(bool isPending) {
+  void setPending(bool isPending) {
     model.isPending = isPending;
     notifyListeners();
   }
 
-  clearWhere(bool Function({String? id, TikiDecisionCard? card}) where) {
+  void clearWhere(bool Function({String? id, TikiDecisionCard? card}) where) {
     List<String> removeKeys = [];
     model.cards.forEach((key, value) {
       if(where(id: key, card:value)) removeKeys.add(key);

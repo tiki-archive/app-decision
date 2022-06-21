@@ -3,6 +3,7 @@
  * MIT license. See LICENSE file in root directory.
  */
 
+import 'package:amplitude_flutter/amplitude.dart';
 import 'package:example/widgety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,9 +17,9 @@ import 'package:tiki_kv/tiki_kv.dart';
 import 'package:uuid/uuid.dart';
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('Decision Tests', () {
+    IntegrationTestWidgetsFlutterBinding.ensureInitialized();
     testWidgets(
         'Test decision screen with email count', (WidgetTester tester) async {
       int totalEmails = 1000;
@@ -122,6 +123,43 @@ void main() {
       await tester.pumpAndSettle();
       count = tester.widgetList<ScreenViewWidgetCard>(cardsWidgets).length;
       expect(count, 1);
+    });
+
+    testWidgets(
+        'Make 2 decisions and log in amplitude (needs manual confirmation)', (WidgetTester tester) async {
+      WidgetsFlutterBinding.ensureInitialized();
+      Database database = await openDatabase('${const Uuid().v4()}.db');
+      TikiKv tikiKv = await TikiKv(database: database).init();
+      await tikiKv.upsert('test_done_callback', 'true');
+      Amplitude amplitude = Amplitude.getInstance(instanceName: "App-test");
+      await amplitude.init("6f52993a138d9209786c76a03c4e25cf");
+      await amplitude.enableCoppaControl();
+      await amplitude.setUserId(null);
+      await amplitude.trackingSessionEvents(true);
+      TikiDecision decision = await TikiDecision(
+          tikiKv: tikiKv,
+          isLinked: true,
+          amplitude: amplitude)
+          .init();
+      Map<String, TikiDecisionCard> cards = _generateCards();
+      decision.upsert(cards);
+      runApp(MaterialApp(
+        title: 'Decision Example',
+        theme: ThemeData(),
+        home: Scaffold(
+          body: Widgety(decision),
+        ),
+      ));
+      await tester.pumpAndSettle();
+      Finder cardsWidgets = find.byType(ScreenViewWidgetCard);
+      int count = tester.widgetList<ScreenViewWidgetCard>(cardsWidgets).length;
+      expect(count, 3);
+      for (int i = 0; i < 2; i++) {
+        Finder card = cardsWidgets.first;
+        await tester.drag(card, const Offset(500.0, 0.0));
+        await tester.pumpAndSettle();
+        await Future.delayed(const Duration(seconds: 1));
+      }
     });
   });
 }
