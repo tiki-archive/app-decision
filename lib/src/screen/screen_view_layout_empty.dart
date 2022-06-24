@@ -59,16 +59,6 @@ class ScreenViewLayoutEmpty extends StatelessWidget {
                                           SizeProvider.instance.text(_fontSize),
                                       color: ColorProvider.tikiBlue,
                                       fontWeight: FontWeight.bold)),
-                                TextSpan(
-                                    text: '\nFetched ${service.model.fetchedEmails} of ${service.model.indexedEmails} indexed Emails',
-                                    style: TextStyle(
-                                      fontFamily: TextProvider.familyNunitoSans,
-                                      package: TextProvider.package,
-                                      height: 1.2,
-                                      fontSize:
-                                      SizeProvider.instance.text(12),
-                                      color: ColorProvider.tikiBlue,
-                                      fontWeight: FontWeight.normal)),
                             ]))
                       : RichText(
                           text: TextSpan(
