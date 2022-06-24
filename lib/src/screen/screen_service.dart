@@ -42,6 +42,7 @@ class ScreenService extends ChangeNotifier {
     model.cards.addAll(cards);
     cards.removeWhere((id, card) => model.stack.contains(id));
     model.stack.addAll(cards.keys);
+    notifyListeners();
   }
 
   void removeCardAt(int index) => removeCard(model.stack.elementAt(index));
