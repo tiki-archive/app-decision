@@ -1,3 +1,8 @@
+## 0.0.13
+
+* fix cards creation
+* fix overlay setup
+
 ## 0.0.12
 
 * prepare for multi accounts

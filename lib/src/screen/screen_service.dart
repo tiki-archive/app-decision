@@ -42,6 +42,7 @@ class ScreenService extends ChangeNotifier {
     model.cards.addAll(cards);
     cards.removeWhere((id, card) => model.stack.contains(id));
     model.stack.addAll(cards.keys);
+    notifyListeners();
   }
 
   void removeCardAt(int index) => removeCard(model.stack.elementAt(index));
@@ -55,14 +56,14 @@ class ScreenService extends ChangeNotifier {
   Future<void> addTests() async {
     if(!(await testService.isDone())) {
       upsert(await testService.get());
-      overlay.setInstructions();
       model.isPending = true;
     }
     notifyListeners();
   }
 
-  void setLinked(bool isLinked) {
+  Future<void> setLinked(bool isLinked) async {
     model.isLinked = isLinked;
+    if(!(await testService.isDone())) { overlay.setInstructions(); }
     notifyListeners();
   }
 

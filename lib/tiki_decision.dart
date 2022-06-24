@@ -40,7 +40,7 @@ class TikiDecision {
       _screenService.clearWhere(where);
 
   void setLinked(bool isLinked) => _screenService.setLinked(isLinked);
+  void setPending(bool isPending) => _screenService.setPending(isPending);
   void addIndexedEmails(int count) => _screenService.addIndexedEmails(count);
   void addFetchedEmails(int count) => _screenService.addFetchedEmails(count);
-  void setPending(bool isPending) => _screenService.setPending(isPending);
 }
