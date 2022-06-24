@@ -56,14 +56,14 @@ class ScreenService extends ChangeNotifier {
   Future<void> addTests() async {
     if(!(await testService.isDone())) {
       upsert(await testService.get());
-      overlay.setInstructions();
       model.isPending = true;
     }
     notifyListeners();
   }
 
-  void setLinked(bool isLinked) {
+  Future<void> setLinked(bool isLinked) async {
     model.isLinked = isLinked;
+    if(!(await testService.isDone())) { overlay.setInstructions(); }
     notifyListeners();
   }
 
