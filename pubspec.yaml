@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  amplitude_flutter: 3.10.0
+  amplitude_flutter: ^3.10.0
   provider: ^6.0.3
   logging: ^1.0.2
   url_launcher: ^6.1.4
